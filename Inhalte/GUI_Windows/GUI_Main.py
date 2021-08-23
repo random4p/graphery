@@ -1,6 +1,8 @@
 #Hier kommt der Code für das Hauptfenster rein
 
 import tkinter as tk
+from tkinter.ttk import *
+from pathlib import Path
 
 class Window():
     
@@ -52,15 +54,15 @@ class Window():
         self.master.columnconfigure(1, minsize = 800, weight = 1)
 
         #create Frame for column 1 on the right
-        fr_frame = tk.Frame(self.master, bg = "grey")
+        fr_frame = tk.Frame(self.master )
         #create Frame for column 0 on the left
         fr_buttons = tk.Frame(self.master)
 
         #initialise all buttons in the tab-box
-        btn_dashboard =tk.Button(fr_buttons, text = "Dashbaord", height=10)
-        btn_Plot =tk.Button(fr_buttons, text = "Plot", height=10)
-        btn_Statistics =tk.Button(fr_buttons, text = "Statistics", height=10)
-        btn_Info =tk.Button(fr_buttons, text = "Info", height=10)
+        btn_dashboard =tk.Button(fr_buttons, text = "Dashbaord", height=10, bg = "DeepSkyBlue2", font=("Arial", "12", "bold"))
+        btn_Plot =tk.Button(fr_buttons, text = "Plot", height=10, bg = "DeepSkyBlue2", font=("Arial", "12", "bold"))
+        btn_Statistics =tk.Button(fr_buttons, text = "Statistics", height=10, bg = "DeepSkyBlue2", font=("Arial", "12", "bold"))
+        btn_Info =tk.Button(fr_buttons, text = "Info", height=10, bg = "DeepSkyBlue2", font=("Arial", "12", "bold"))
 
         #manage position of tab-buttons
         btn_dashboard.grid(row=0, column=0, sticky="ew", padx=5, pady=10)

@@ -27,7 +27,7 @@ class StartWindow(Tk):
         #searches image path
         #instead of file = file_to_open you can also just do
         # file = graphery_logo.png if that works
-        data_folder = Path("Inhalte/GUI_Windows")
+        data_folder = Path("Inhalte/Images")
         file_to_open = data_folder / "graphery_logo.png"
         self.logo = PhotoImage(file=file_to_open)
         # canvas

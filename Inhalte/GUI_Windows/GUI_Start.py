@@ -19,7 +19,7 @@ class StartWindow(Tk):
         super().__init__()
         self.title("Import/Open")
         self.resizable(False, False)
-        self.config(padx=50, pady=50, bg=LIGHT_LIGHT_GREEN)
+        self.config(padx=50, pady=30, bg=LIGHT_LIGHT_GREEN)
         self.geometry(
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
@@ -45,8 +45,8 @@ class StartWindow(Tk):
         btn_open.grid(column=1, row=1)
 
         # Labels
-        impressum = Label(text="© 2021 eld3niz and random4p", bg=GREEN, fg="White", padx=244)
-        impressum.grid(column=0, row=2, columnspan=2)
+        impressum = Label(text="© 2021 eld3niz and random4p", bg=GREEN, fg="White", padx=243)
+        impressum.grid(column=0, row=2, columnspan=2, pady=15)
 
 
 app = StartWindow()

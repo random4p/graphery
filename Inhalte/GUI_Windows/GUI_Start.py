@@ -2,7 +2,8 @@
 
 # imports
 from tkinter import Tk, Button, PhotoImage, Canvas, Label
-
+import os
+from pathlib import Path
 # constants
 WINDOW_WIDTH = 750
 WINDOW_HEIGHT = 400
@@ -23,8 +24,13 @@ class StartWindow(Tk):
         self.geometry(
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
+        #searches image path
+        #instead of file = file_to_open you can also just do
+        # file = graphery_logo.png if that works
+        data_folder = Path("Inhalte/GUI_Windows")
+        file_to_open = data_folder / "graphery_logo.png"
+        self.logo = PhotoImage(file=file_to_open)
         # canvas
-        self.logo = PhotoImage(file="graphery_logo.png")
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
         canvas.update()

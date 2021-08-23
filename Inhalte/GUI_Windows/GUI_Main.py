@@ -3,11 +3,13 @@
 import tkinter as tk
 from tkinter.ttk import *
 from pathlib import Path
+from typing import Text
 
 class Window():
     
     def __init__(self, master = None):
         self.master = tk.Tk()
+        self.master.minsize(400, 400)
         self.master.title("Graphery")
         tabs = Notebook(self.master)
 

@@ -2,17 +2,10 @@
 
 import tkinter as tk
 
+window = tk.Tk()
 
-root = tk.Tk()
+greeting = tk.Label(text="Develop all necessary elements")
 
-canvas = tk.Canvas(root, width=600, height=300)
-canvas.grid(columnspan = 3)
+greeting.pack()
 
-#select Image for application
-#logo = Image.open()
-#logo = ImageTk.PhotoImage(logo)
-#logo_label = tk.Label(image=logo)
-#logo_label.image = logo
-#logo_label.grid(column=1, row = 0)
-
-root.mainloop()
+window.mainloop()

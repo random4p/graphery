@@ -1,1 +1,1 @@
-print("Hello")
+#In diese Datei kommen alle Imports und der Code für die Hauptdatei

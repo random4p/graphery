@@ -40,8 +40,7 @@ class Window():
 
         menubar.add_cascade(label="Edit", menu=editmenu)
         helpmenu = tk.Menu(menubar, tearoff=0)
-        helpmenu.add_command(label="Help Index", command=donothing)
-        helpmenu.add_command(label="About...", command=donothing)
+        helpmenu.add_command(label="Info", command=donothing)
         menubar.add_cascade(label="Help", menu=helpmenu)
 
         self.master.config(menu=menubar)

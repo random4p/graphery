@@ -1,3 +1,6 @@
-hallo
-wie gehts
-alles gut soweit   und bei dir 
+id, name, adresse, gewicht
+1, simon, zuhause, 30
+2, uwe, zuhause, 50
+3, gerd, olching, 70
+4, harald, esting, 60
+5, bert, eichenau, 80

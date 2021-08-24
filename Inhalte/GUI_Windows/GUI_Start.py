@@ -3,6 +3,7 @@
 # imports
 from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog
 import Data_Manager
+import GUI_Main
 
 # constants
 WINDOW_WIDTH = 750
@@ -18,10 +19,13 @@ LIGHT_LIGHT_GREEN = "#DFEEEA"
 def import_file():
     file = filedialog.askopenfile(
         title='Open a file')
-    type = file.name.split(".")[-1]
+    file_type = file.name.split(".")[-1]
 
-    data = Data_Manager.DataManager(file, type)
-    print(data)
+    data_set = Data_Manager.DataManager(file, file_type)
+
+    app.destroy()
+    main_window = GUI_Main.Window()
+    main_window.start()
 
 
 # ----------------------------WINDOW-----------------------------------#

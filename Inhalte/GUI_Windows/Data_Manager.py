@@ -1,15 +1,24 @@
-from pandas import DataFrame, read_csv, read_json
+from pandas import DataFrame, read_csv, read_json, read_fwf
 import json.decoder
 
 
 class DataManager:
     def __init__(self, file=None, file_type=None):
         if file_type == "csv":
-            self.data = read_csv(file)
+            tmp = read_csv(file)
+            self.data = DataFrame.from_dict(tmp)
+
         elif file_type == "txt":
-            self.data = file.readlines()
+            tmp = read_csv(file, delimiter=",")
+            self.data = DataFrame.from_dict(tmp)
+
         elif file_type == "json":
-            self.data = json.load(file)
+            tmp = json.load(file)
+            self.data = DataFrame.from_dict(tmp)
+
+        else:
+            print("Your file type is not supported!")
+
 
 
 

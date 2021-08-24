@@ -9,7 +9,7 @@ class Window():
     
     def __init__(self, master = None):
         self.master = tk.Tk()
-        self.master.minsize(400, 400)
+        self.master.minsize(600, 350)
         self.master.title("Graphery")
         tabs = Notebook(self.master)
 
@@ -22,7 +22,7 @@ class Window():
         tabs.add(tab_plot, text = "Plot")
         tabs.add(tab_stat, text = "Statistics")
         tabs.add(tab_info, text = "Info")
-        tabs.pack(expand = True, fill = "both")
+        tabs.pack(expand = True,  fill = "both")
         
         Label(tab_dashboard,text="Hello, this is tab#1",width=100).pack()
         Label(tab_plot,text="Hello, this is tab#2",width=100).pack()

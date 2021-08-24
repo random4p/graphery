@@ -10,7 +10,7 @@ import pandas as pd
 
 class Window():
     
-    def __init__(self, master = None):
+    def __init__(self, master=None):
         self.master = tk.Tk()
         self.master.minsize(1000, 350)
         self.master.title("Graphery")

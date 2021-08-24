@@ -1,9 +1,9 @@
 # open and import window
 
 # imports
-from tkinter import Tk, Button, PhotoImage, Canvas, Label
-import os
-from pathlib import Path
+from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog
+import Data_Manager
+
 # constants
 WINDOW_WIDTH = 750
 WINDOW_HEIGHT = 400
@@ -13,6 +13,18 @@ LIGHT_GREEN = "#A7C4BC"
 LIGHT_LIGHT_GREEN = "#DFEEEA"
 
 
+# ----------------------------METHODS----------------------------------#
+
+def import_file():
+    file = filedialog.askopenfile(
+        title='Open a file')
+    type = file.name.split(".")[-1]
+
+    data = Data_Manager.DataManager(file, type)
+    print(data)
+
+
+# ----------------------------WINDOW-----------------------------------#
 # main class: create the start-window
 class StartWindow(Tk):
     def __init__(self):
@@ -24,12 +36,7 @@ class StartWindow(Tk):
         self.geometry(
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
-        #searches image path
-        #instead of file = file_to_open you can also just do
-        # file = graphery_logo.png if that works
-        data_folder = Path("Inhalte/Images")
-        file_to_open = data_folder / "graphery_logo.png"
-        self.logo = PhotoImage(file=file_to_open)
+        self.logo = PhotoImage(file="Images/graphery_logo.png")
         # canvas
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
@@ -46,7 +53,8 @@ class StartWindow(Tk):
                           font=("Arial", "18"), highlightthickness=0, borderwidth=0)
         btn_import = Button(bg=GREEN, text="Import",
                             fg="White", width=20, pady=20, padx=20,
-                            font=("Arial", "18"), highlightthickness=0, borderwidth=0)
+                            font=("Arial", "18"), highlightthickness=0, borderwidth=0,
+                            command=import_file)
         btn_import.grid(column=0, row=1)
         btn_open.grid(column=1, row=1)
 

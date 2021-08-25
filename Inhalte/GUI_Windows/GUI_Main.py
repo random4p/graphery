@@ -9,6 +9,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.title = 'Graphery'
+        self.setWindowTitle("Graphery")
         self.setGeometry(100, 60, 1000, 800)
         self.setMinimumSize(600, 500)
         self.left = 10
@@ -16,6 +17,33 @@ class Window(QMainWindow):
         self.width = 640
         self.height = 400
         self.initUI()
+        self.setWindowIcon(QIcon("Inhalte/GUI_Windows/Images/graphery_logo.png"))
+
+        # css = """
+        # QWidget{
+        #     Background: white;
+        #     color:white;
+        #     font:12px bold;
+        #     font-weight:bold;
+        #     border-radius: 1px;
+        #     height: 11px;
+        # }
+        # QDialog{
+        #     Background-image:url('img/titlebar bg.png');
+        #     font-size:12px;
+        #     color: black;
+
+        # }
+        # QToolButton{
+        #     Background:#AA00AA;
+        #     font-size:11px;
+        # }
+        # QToolButton:hover{
+        #     Background: #FF00FF;
+        #     font-size:11px;
+        # }
+        # """
+        #self.setStyleSheet(css)
 
         self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
@@ -61,13 +89,9 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.plot,"Plot")
         self.tabs.addTab(self.stat,"Statistics")
         self.tabs.addTab(self.info,"Info")
-        
 
 
-
-
-
-
+        ########################
         #add layout to dashboard
         self.dash.layout = QGridLayout()
         self.dash.layout.maximumSize()
@@ -133,9 +157,10 @@ class MyTableWidget(QWidget):
             for button in self.list_of_buttons:
                 button.clicked.connect(lambda: switch_window())
                     
-
         self.dash.setLayout(self.dash.layout)
             
+        
+        ##############
         #plot tab
         
         

@@ -21,14 +21,17 @@ existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join
 
 def import_file():
     # get file from user
-    file = filedialog.askopenfile(
-        title='Open a file')
-    file_type = file.name.split(".")[-1]
-    name = app.entry_name.get()
-
-    # make our data set structured --> DataManager
-    data_set = Data_Manager.DataManager(file, file_type, name)
-    app.destroy()
+    try:
+        file = filedialog.askopenfile(
+            title='Open a file')
+        file_type = file.name.split(".")[-1]
+        name = app.entry_name.get()
+        data_set = Data_Manager.DataManager(file, file_type, name)
+        app.destroy()
+    except FileNotFoundError:
+        print("File was not found.")
+    except AttributeError:
+        print("Object does not have this attribute.")
 
 def open_file():
     if app.entry_name.get() in existing_projects:
@@ -65,16 +68,16 @@ class StartWindow(Tk):
         self.entry_name.grid(column=1, row=1, pady=10, padx=10)
 
         # Buttons
-        btn_open = Button(bg=GREEN, text="Open",
+        self.btn_open = Button(bg=GREEN, text="Open",
                           fg="White", width=20, pady=20, padx=20,
                           font=("Arial", "18"), highlightthickness=0, borderwidth=0,
-                          command=open_file)
-        btn_import = Button(bg=GREEN, text="Import",
+                          command=open_file, state="disabled")
+        self.btn_import = Button(bg=GREEN, text="Import",
                             fg="White", width=20, pady=20, padx=20,
                             font=("Arial", "18"), highlightthickness=0, borderwidth=0,
-                            command=import_file)
-        btn_import.grid(column=0, row=2)
-        btn_open.grid(column=1, row=2)
+                            command=import_file, state="disabled")
+        self.btn_import.grid(column=0, row=2)
+        self.btn_open.grid(column=1, row=2)
 
         # Labels
         project_name_label = Label(text="Enter the project name:", font=("Arial", 15, "bold"))
@@ -82,6 +85,21 @@ class StartWindow(Tk):
         creator_label = Label(text="© 2021 eld3niz and random4p", bg=GREEN, fg="White", padx=243)
         creator_label.grid(column=0, row=3, columnspan=2, pady=15)
 
+    # functionality -- enable und disable button
+    def check_window(self, function):
+        self.after(100, func=function)
+
+    def check_entry_field(self):
+        if self.entry_name.get() != "":
+            self.btn_import.config(state="normal")
+            self.btn_open.config(state="normal")
+            self.check_window(self.check_entry_field)
+        else:
+            self.btn_import.config(state="disabled")
+            self.btn_open.config(state="disabled")
+            self.check_window(self.check_entry_field)
+
 
 app = StartWindow()
+app.check_window(app.check_entry_field)
 app.mainloop()

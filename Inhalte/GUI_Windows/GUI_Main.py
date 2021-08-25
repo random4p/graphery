@@ -1,7 +1,8 @@
 
-from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QVBoxLayout, QTabWidget, QAction, QGridLayout
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import pyqtSlot
+
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 class Window(QMainWindow):
     
@@ -61,17 +62,45 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.info,"Info")
         
         self.dash.layout = QGridLayout()
+        self.dash.layout.maximumSize()
         # self.dash.layout.setColumnStretch(1, 4)
-        # self.dash.layout.setColumnStretch(2, 4) 
-        self.dash.layout.addWidget(QPushButton('+'),0,0)
-        self.dash.layout.addWidget(QPushButton('+'),0,1)
-        self.dash.layout.addWidget(QPushButton('+'),0,3)
-        self.dash.layout.addWidget(QPushButton('+'),1,0)
-        self.dash.layout.addWidget(QPushButton('+'),1,1)
-        self.dash.layout.addWidget(QPushButton('+'),1,2)
-        self.dash.layout.addWidget(QPushButton('+'),2,0)
-        self.dash.layout.addWidget(QPushButton('+'),2,1)
-        self.dash.layout.addWidget(QPushButton('+'),3,1)
+        # self.dash.layout.setColumnStretch(2, 4)
+        self.dash.rows = QDoubleSpinBox(self.dash)
+        self.dash.rows.move(10, 10)
+        self.dash.label = QLabel("Dimensionen", self.dash)
+        self.dash.label.move(140, 10)
+        self.dash.label.setWordWrap(True)
+        self.dash.confirm = QPushButton("confirm", self.dash)
+        self.dash.confirm.move(200, 10)
+        
+        
+        self.dash.confirm.clicked.connect(lambda: Warning_Window())
+        def Warning_Window():
+            reply = QMessageBox.question(self, 'Change Dimensions', 'Changing of dimensions leads to loss of plots and statistics',
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                spin_method()
+            else:
+                spin_method.ignore()
+        
+
+        def spin_method():
+            num_rows = int(self.dash.rows.value())
+            num_col = int(self.dash.rows.value())
+            if int(self.dash.rows.value()) <= 6:
+                for i in range(num_rows):
+                    for j in range(num_col):
+                            plus = QPushButton("+")
+                            plus.setFixedSize(QSize(30, 30))
+                            self.dash.layout.addWidget(plus,i, j)
+            else:
+                num_rows = 6
+                num_col = 6
+                for i in range(num_rows):
+                    for j in range(num_col):
+                            plus = QPushButton("+")
+                            plus.setFixedSize(QSize(30, 30))
+                            self.dash.layout.addWidget(plus,i, j)
         self.dash.setLayout(self.dash.layout)
             
         self.layout.addWidget(self.tabs)

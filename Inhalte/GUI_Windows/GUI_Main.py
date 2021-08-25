@@ -95,8 +95,8 @@ class MyTableWidget(QWidget):
         #add layout to dashboard
         self.dash.layout = QGridLayout()
         self.dash.layout.maximumSize()
-        # self.dash.layout.setColumnStretch(1, 4)
-        # self.dash.layout.setColumnStretch(2, 4)
+
+
         #input box with confirmation box for changing dimensions
         self.dash.rows = QDoubleSpinBox(self.dash)
         self.dash.rows.move(10, 10)
@@ -146,9 +146,6 @@ class MyTableWidget(QWidget):
         def spin_method():
             self.list_of_buttons = []
             
-            # for m in range(6):
-            #     for n in range(6):
-            #         self.dash.layout.removeWidget(QPushButton, m, n)
             if int(self.dash.rows.value()) <= 6 and int(self.dash.cols.value()) <= 6:
                 for i in range(int(self.dash.rows.value())):
                     for j in range(int(self.dash.cols.value())):
@@ -156,6 +153,7 @@ class MyTableWidget(QWidget):
                             plus.setFixedSize(QSize(30, 30))
                             self.dash.layout.addWidget(plus,i, j)
                             self.list_of_buttons.append(plus)
+
             else:
                     reply = QMessageBox.question(self, 'Maximum Rows and Columns', 
                     'The maximum amount of rows and columns is 6. You haven choosen {row} rows and {col} columns'.format(row = int(self.dash.rows.value()), col = int(self.dash.cols.value())),

@@ -1,5 +1,5 @@
 
-
+import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -121,29 +121,26 @@ class MyTableWidget(QWidget):
             else:
                 pass
         
+        
         def switch_window():
-            pop_window = QMainWindow()
+            pop_window = QMainWindow(self)
             pop_window.setWindowTitle("Plot or Statistics")
-            pop_window.width = 300
-            pop_window.height = 300
-            pop_window.layout = QGridLayout()
+            pop_window.setMinimumSize(300, 130)
+            CentralWidget = QWidget()
+            CentralWidgetLayout = QHBoxLayout()
             plot_button = QPushButton("Plot")
             stat_button = QPushButton("Stat")
-            pop_window.layout.addWidget(plot_button, 0, 0)
-            pop_window.layout.addWidget(stat_button, 0, 1)
+            CentralWidgetLayout.addWidget(plot_button)
+            CentralWidgetLayout.addWidget(stat_button)
+            CentralWidget.setLayout(CentralWidgetLayout)
+            pop_window.setCentralWidget(CentralWidget)
             
-            # reply = QMessageBox(self)
-            # reply.setText("Do you want a new Plot or Statistic?")
-            # reply = QMessageBox.question(self, "Plot or Statistic", 
-            #                             "Decide if you want a new plot or statistic", 
-            #                             QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            # if reply == QPushButton.Yes:
-            #     self.tabs.setCurrentIndex(1)
-            # if reply == QPushButton.No:
-            #     self.tabs.setCurrentIndex(2)
             plot_button.clicked.connect(lambda: self.tabs.setCurrentIndex(1))
+            plot_button.clicked.connect(lambda: pop_window.close())
             stat_button.clicked.connect(lambda: self.tabs.setCurrentIndex(2))
+            stat_button.clicked.connect(lambda: pop_window.close())
             pop_window.show()
+    
         #confirmation of dimension change box leads to creation of grid
         #maximum num of rows and colums is 6
         def spin_method():

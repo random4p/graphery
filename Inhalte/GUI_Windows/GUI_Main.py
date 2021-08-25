@@ -9,6 +9,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.title = 'Graphery'
+        self.setWindowTitle("Graphery")
         self.setGeometry(100, 60, 1000, 800)
         self.setMinimumSize(600, 500)
         self.left = 10
@@ -16,6 +17,33 @@ class Window(QMainWindow):
         self.width = 640
         self.height = 400
         self.initUI()
+        self.setWindowIcon(QIcon("Inhalte/GUI_Windows/Images/graphery_logo.png"))
+
+        # css = """
+        # QWidget{
+        #     Background: white;
+        #     color:white;
+        #     font:12px bold;
+        #     font-weight:bold;
+        #     border-radius: 1px;
+        #     height: 11px;
+        # }
+        # QDialog{
+        #     Background-image:url('img/titlebar bg.png');
+        #     font-size:12px;
+        #     color: black;
+
+        # }
+        # QToolButton{
+        #     Background:#AA00AA;
+        #     font-size:11px;
+        # }
+        # QToolButton:hover{
+        #     Background: #FF00FF;
+        #     font-size:11px;
+        # }
+        # """
+        #self.setStyleSheet(css)
 
         self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
@@ -61,7 +89,9 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.plot,"Plot")
         self.tabs.addTab(self.stat,"Statistics")
         self.tabs.addTab(self.info,"Info")
-        
+
+
+        ########################
         #add layout to dashboard
         self.dash.layout = QGridLayout()
         self.dash.layout.maximumSize()
@@ -90,29 +120,53 @@ class MyTableWidget(QWidget):
                 spin_method()
             else:
                 pass
-        list_of_buttons = []
+        
+        def switch_window():
+            reply = QMessageBox(self)
+            reply.setText("Do you want a new Plot or Statistic?")
+            #reply.setDefaultButton(QMessageBox("Plot"))
+            #reply.setDefaultButton(QMessageBox("Statistics"))
+            reply = QMessageBox.question(self, "Plot or Statistic", "Decide if you want a new plot or statistic", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                self.tabs.setCurrentIndex(1)
+            if reply == QMessageBox.No:
+                self.tabs.setCurrentIndex(2)
+            else :
+                self.tabs.setCurrentIndex(0)
         #confirmation of dimension change box leads to creation of grid
         #maximum num of rows and colums is 6
         def spin_method():
-            copy_list = list_of_buttons.copy()
-            num_rows = int(self.dash.rows.value())
-            num_col = int(self.dash.cols.value())
-            if int(self.dash.rows.value()) <= 6:
-                for i in range(num_rows):
-                    for j in range(num_col):
+            self.list_of_buttons = []
+            
+            # for m in range(6):
+            #     for n in range(6):
+            #         self.dash.layout.removeWidget(QPushButton, m, n)
+            if int(self.dash.rows.value()) <= 6 and int(self.dash.cols.value()) <= 6:
+                for i in range(int(self.dash.rows.value())):
+                    for j in range(int(self.dash.cols.value())):
                             plus = QPushButton("+")
                             plus.setFixedSize(QSize(30, 30))
                             self.dash.layout.addWidget(plus,i, j)
-                            copy_list.append(plus)
+                            self.list_of_buttons.append(plus)
             else:
                     reply = QMessageBox.question(self, 'Maximum Rows and Columns', 
                     'The maximum amount of rows and columns is 6. You haven choosen {row} rows and {col} columns'.format(row = int(self.dash.rows.value()), col = int(self.dash.cols.value())),
                     QMessageBox.Ok, QMessageBox.Ok)
                     if reply == QMessageBox.Ok:
                         pass
-
+            for button in self.list_of_buttons:
+                button.clicked.connect(lambda: switch_window())
+                    
         self.dash.setLayout(self.dash.layout)
             
+        
+        ##############
+        #plot tab
+        
+        
+        
+        
+        
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 

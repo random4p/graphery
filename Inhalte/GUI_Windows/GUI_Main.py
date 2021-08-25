@@ -1,5 +1,5 @@
-import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QVBoxLayout, QTabWidget, QAction, QHBoxLayout, QGroupBox, QDialog, QGridLayout
+
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QVBoxLayout, QTabWidget, QAction, QGridLayout
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
@@ -60,21 +60,20 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.stat,"Statistics")
         self.tabs.addTab(self.info,"Info")
         
-        
-        
         self.dash.layout = QGridLayout()
-        self.dash.layout.setColumnStretch(1, 4)
-        self.dash.layout.setColumnStretch(2, 4) 
-        self.dash.layout.addWidget(QPushButton('1'),0,0)
-        self.dash.layout.addWidget(QPushButton('2'),0,1)
-        self.dash.layout.addWidget(QPushButton('3'),0,2)
-        self.dash.layout.addWidget(QPushButton('4'),1,0)
-        self.dash.layout.addWidget(QPushButton('5'),1,1)
-        self.dash.layout.addWidget(QPushButton('6'),1,2)
-        self.dash.layout.addWidget(QPushButton('7'),2,0)
-        self.dash.layout.addWidget(QPushButton('8'),2,1)
+        # self.dash.layout.setColumnStretch(1, 4)
+        # self.dash.layout.setColumnStretch(2, 4) 
+        self.dash.layout.addWidget(QPushButton('+'),0,0)
+        self.dash.layout.addWidget(QPushButton('+'),0,1)
+        self.dash.layout.addWidget(QPushButton('+'),0,3)
+        self.dash.layout.addWidget(QPushButton('+'),1,0)
+        self.dash.layout.addWidget(QPushButton('+'),1,1)
+        self.dash.layout.addWidget(QPushButton('+'),1,2)
+        self.dash.layout.addWidget(QPushButton('+'),2,0)
+        self.dash.layout.addWidget(QPushButton('+'),2,1)
+        self.dash.layout.addWidget(QPushButton('+'),3,1)
         self.dash.setLayout(self.dash.layout)
-        
+            
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 

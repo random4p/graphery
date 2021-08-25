@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ebffa2-660c-4d4f-b196-2bb51b941219" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Sample_Files/fashion_products_reviews_dataset.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Data_Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Data_Manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Start.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Start.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Sample_Files/sample.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Sample_Files/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Sample_Files/text.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,8 +161,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.GUI_Start" />
-        <item itemvalue="Python.Data_Manager" />
         <item itemvalue="Python.Main" />
+        <item itemvalue="Python.Data_Manager" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.GUI-Main" />
       </list>
@@ -209,30 +205,30 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="140" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1368.872@0.0.1368.872" timestamp="1629724389728" />
-    <state x="465" y="192" key="FileChooserDialogImpl" timestamp="1629786081418">
+    <state x="465" y="192" key="FileChooserDialogImpl" timestamp="1629872489182">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="465" y="192" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1629786081418" />
-    <state width="1348" height="233" key="GridCell.Tab.0.bottom" timestamp="1629816460734">
+    <state x="465" y="192" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1629872489182" />
+    <state width="1348" height="187" key="GridCell.Tab.0.bottom" timestamp="1629878246804">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="233" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1629816460734" />
-    <state width="1348" height="233" key="GridCell.Tab.0.center" timestamp="1629816460733">
+    <state width="1348" height="187" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1629878246804" />
+    <state width="1348" height="187" key="GridCell.Tab.0.center" timestamp="1629878246804">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="233" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1629816460733" />
-    <state width="1348" height="233" key="GridCell.Tab.0.left" timestamp="1629816460733">
+    <state width="1348" height="187" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1629878246804" />
+    <state width="1348" height="187" key="GridCell.Tab.0.left" timestamp="1629878246804">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="233" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1629816460733" />
-    <state width="1348" height="233" key="GridCell.Tab.0.right" timestamp="1629816460733">
+    <state width="1348" height="187" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1629878246804" />
+    <state width="1348" height="187" key="GridCell.Tab.0.right" timestamp="1629878246804">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="233" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1629816460733" />
-    <state x="380" y="262" key="com.intellij.ide.util.TipDialog" timestamp="1629784977632">
+    <state width="1348" height="187" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1629878246804" />
+    <state x="380" y="262" key="com.intellij.ide.util.TipDialog" timestamp="1629869221571">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="380" y="262" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1629784977632" />
+    <state x="380" y="262" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1629869221571" />
     <state x="492" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1629785439368">
       <screen x="0" y="0" width="1368" height="872" />
     </state>

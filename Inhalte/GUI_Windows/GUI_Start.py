@@ -1,8 +1,10 @@
 # open and import window
 
 # imports
-from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog, Entry
+from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog, Entry, messagebox
 import Data_Manager
+from os import listdir
+from os.path import isfile, join
 
 # constants
 WINDOW_WIDTH = 750
@@ -12,9 +14,9 @@ GREEN = "#5E8B7E"
 LIGHT_GREEN = "#A7C4BC"
 LIGHT_LIGHT_GREEN = "#DFEEEA"
 
+existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
 
 # ----------------------------Import_Function----------------------------------#
-
 # missing that the user can only open or import a file if he has entered a name in the entry field !!!
 
 def import_file():
@@ -27,6 +29,12 @@ def import_file():
     # make our data set structured --> DataManager
     data_set = Data_Manager.DataManager(file, file_type, name)
     app.destroy()
+
+def open_file():
+    if app.entry_name.get() in existing_projects:
+        data_set = Data_Manager.DataManager(name=app.entry_name.get(), mode="open")
+    else:
+        messagebox.showerror("FileNotFoundError", "This file does not exist. Maybe you want to import a data set.")
 
 
 # ----------------------------Start_WINDOW-----------------------------------#
@@ -41,8 +49,8 @@ class StartWindow(Tk):
         self.geometry(
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
-        self.logo = PhotoImage(file="Images/graphery_logo.png")
         # canvas
+        self.logo = PhotoImage(file="Images/graphery_logo.png")
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
         canvas.update()
@@ -59,7 +67,8 @@ class StartWindow(Tk):
         # Buttons
         btn_open = Button(bg=GREEN, text="Open",
                           fg="White", width=20, pady=20, padx=20,
-                          font=("Arial", "18"), highlightthickness=0, borderwidth=0)
+                          font=("Arial", "18"), highlightthickness=0, borderwidth=0,
+                          command=open_file)
         btn_import = Button(bg=GREEN, text="Import",
                             fg="White", width=20, pady=20, padx=20,
                             font=("Arial", "18"), highlightthickness=0, borderwidth=0,
@@ -70,8 +79,8 @@ class StartWindow(Tk):
         # Labels
         project_name_label = Label(text="Enter the project name:", font=("Arial", 15, "bold"))
         project_name_label.grid(row=1, column=0, pady=10, sticky="e")
-        impressum_label = Label(text="© 2021 eld3niz and random4p", bg=GREEN, fg="White", padx=243)
-        impressum_label.grid(column=0, row=3, columnspan=2, pady=15)
+        creator_label = Label(text="© 2021 eld3niz and random4p", bg=GREEN, fg="White", padx=243)
+        creator_label.grid(column=0, row=3, columnspan=2, pady=15)
 
 
 app = StartWindow()

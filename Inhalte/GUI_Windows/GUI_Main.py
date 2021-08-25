@@ -1,7 +1,8 @@
-import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QVBoxLayout, QTabWidget, QAction, QHBoxLayout, QGroupBox, QDialog, QGridLayout
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import pyqtSlot
+
+
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 class Window(QMainWindow):
     
@@ -9,6 +10,7 @@ class Window(QMainWindow):
         super().__init__()
         self.title = 'Graphery'
         self.setGeometry(100, 60, 1000, 800)
+        self.setMinimumSize(600, 500)
         self.left = 10
         self.top = 10
         self.width = 640
@@ -60,21 +62,57 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.stat,"Statistics")
         self.tabs.addTab(self.info,"Info")
         
-        
-        
+        #add layout to dashboard
         self.dash.layout = QGridLayout()
-        self.dash.layout.setColumnStretch(1, 4)
-        self.dash.layout.setColumnStretch(2, 4) 
-        self.dash.layout.addWidget(QPushButton('1'),0,0)
-        self.dash.layout.addWidget(QPushButton('2'),0,1)
-        self.dash.layout.addWidget(QPushButton('3'),0,2)
-        self.dash.layout.addWidget(QPushButton('4'),1,0)
-        self.dash.layout.addWidget(QPushButton('5'),1,1)
-        self.dash.layout.addWidget(QPushButton('6'),1,2)
-        self.dash.layout.addWidget(QPushButton('7'),2,0)
-        self.dash.layout.addWidget(QPushButton('8'),2,1)
-        self.dash.setLayout(self.dash.layout)
+        self.dash.layout.maximumSize()
+        # self.dash.layout.setColumnStretch(1, 4)
+        # self.dash.layout.setColumnStretch(2, 4)
+        #input box with confirmation box for changing dimensions
+        self.dash.rows = QDoubleSpinBox(self.dash)
+        self.dash.rows.move(10, 10)
+        self.dash.label_row = QLabel("Rows", self.dash)
+        self.dash.label_row.move(125, 10)
+        self.dash.label_row.setWordWrap(True)
+        self.dash.cols = QDoubleSpinBox(self.dash)
+        self.dash.cols.move(200, 10)
+        self.dash.label_col = QLabel("Columns", self.dash)
+        self.dash.label_col.move(320, 10)
+        self.dash.confirm = QPushButton("confirm", self.dash)
+        self.dash.confirm.move(400, 10)
         
+        #messagebox if confirm button is clicked
+        self.dash.confirm.clicked.connect(lambda: Warning_Window())
+        def Warning_Window():
+            reply = QMessageBox.question(self, 'Change Dimensions', 
+            'Changing of dimensions leads to loss of plots and statistics. You have choosen {row} rows and {col} columns'.format(row = int(self.dash.rows.value()), col = int(self.dash.cols.value())),
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                spin_method()
+            else:
+                pass
+        list_of_buttons = []
+        #confirmation of dimension change box leads to creation of grid
+        #maximum num of rows and colums is 6
+        def spin_method():
+            copy_list = list_of_buttons.copy()
+            num_rows = int(self.dash.rows.value())
+            num_col = int(self.dash.cols.value())
+            if int(self.dash.rows.value()) <= 6:
+                for i in range(num_rows):
+                    for j in range(num_col):
+                            plus = QPushButton("+")
+                            plus.setFixedSize(QSize(30, 30))
+                            self.dash.layout.addWidget(plus,i, j)
+                            copy_list.append(plus)
+            else:
+                    reply = QMessageBox.question(self, 'Maximum Rows and Columns', 
+                    'The maximum amount of rows and columns is 6. You haven choosen {row} rows and {col} columns'.format(row = int(self.dash.rows.value()), col = int(self.dash.cols.value())),
+                    QMessageBox.Ok, QMessageBox.Ok)
+                    if reply == QMessageBox.Ok:
+                        pass
+
+        self.dash.setLayout(self.dash.layout)
+            
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 

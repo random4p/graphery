@@ -122,17 +122,28 @@ class MyTableWidget(QWidget):
                 pass
         
         def switch_window():
-            reply = QMessageBox(self)
-            reply.setText("Do you want a new Plot or Statistic?")
-            #reply.setDefaultButton(QMessageBox("Plot"))
-            #reply.setDefaultButton(QMessageBox("Statistics"))
-            reply = QMessageBox.question(self, "Plot or Statistic", "Decide if you want a new plot or statistic", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            if reply == QMessageBox.Yes:
-                self.tabs.setCurrentIndex(1)
-            if reply == QMessageBox.No:
-                self.tabs.setCurrentIndex(2)
-            else :
-                self.tabs.setCurrentIndex(0)
+            pop_window = QMainWindow()
+            pop_window.setWindowTitle("Plot or Statistics")
+            pop_window.width = 300
+            pop_window.height = 300
+            pop_window.layout = QGridLayout()
+            plot_button = QPushButton("Plot")
+            stat_button = QPushButton("Stat")
+            pop_window.layout.addWidget(plot_button, 0, 0)
+            pop_window.layout.addWidget(stat_button, 0, 1)
+            
+            # reply = QMessageBox(self)
+            # reply.setText("Do you want a new Plot or Statistic?")
+            # reply = QMessageBox.question(self, "Plot or Statistic", 
+            #                             "Decide if you want a new plot or statistic", 
+            #                             QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            # if reply == QPushButton.Yes:
+            #     self.tabs.setCurrentIndex(1)
+            # if reply == QPushButton.No:
+            #     self.tabs.setCurrentIndex(2)
+            plot_button.clicked.connect(lambda: self.tabs.setCurrentIndex(1))
+            stat_button.clicked.connect(lambda: self.tabs.setCurrentIndex(2))
+            pop_window.show()
         #confirmation of dimension change box leads to creation of grid
         #maximum num of rows and colums is 6
         def spin_method():

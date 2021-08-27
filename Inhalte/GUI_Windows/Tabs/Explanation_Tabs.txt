@@ -1,1 +1,0 @@
-Tabs contains all the relevant code needed for the Sections in the GUI of Graphery, i.e. Info, data, stats, plot

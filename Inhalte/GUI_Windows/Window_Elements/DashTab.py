@@ -4,16 +4,13 @@ from PyQt5.QtCore import *
 
 class DashTab(QWidget):
     
-    #def __init__(self, parent):
+
     def __init__(self, parent, parent_2):
-        #super().__init__()
         super(QWidget, self).__init__(parent)
         
-        ########################
         #add layout to dashboard
         parent.layout = QGridLayout()
         parent.layout.maximumSize()
-
 
         #input box with confirmation box for changing dimensions
         dash_rows = QDoubleSpinBox(parent)
@@ -39,11 +36,10 @@ class DashTab(QWidget):
             else:
                 pass
         
-        
         def switch_window():
-            pop_window = QMainWindow(self)
+            pop_window = QMainWindow(parent)
             pop_window.setWindowTitle("Plot or Statistics")
-            pop_window.setMinimumSize(300, 130)
+            pop_window.setFixedSize(300, 130)
             CentralWidget = QWidget()
             CentralWidgetLayout = QHBoxLayout()
             plot_button = QPushButton("Plot")
@@ -62,17 +58,17 @@ class DashTab(QWidget):
         #confirmation of dimension change box leads to creation of grid
         #maximum num of rows and colums is 6
         def spin_method():
-            parent_2.list_of_buttons = []
+            parent.list_of_buttons = []
             
             for i in range(int(dash_rows.value())):
                     for j in range(int(dash_cols.value())):
                             plus = QPushButton("+")
                             plus.setFixedSize(QSize(30, 30))
-                            self.layout.addWidget(plus,i, j)
-                            self.list_of_buttons.append(plus)
+                            parent.layout.addWidget(plus,i, j)
+                            parent.list_of_buttons.append(plus)
 
-            for button in parent_2.list_of_buttons:
+            for button in parent.list_of_buttons:
                 button.clicked.connect(lambda: switch_window())
             
-                    
+                 
         parent.setLayout(parent.layout)

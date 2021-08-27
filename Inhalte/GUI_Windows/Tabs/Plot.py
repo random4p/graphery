@@ -1,1 +1,0 @@
-#Hier kommt alles relevante an Code für die Plot-Abteilung rein

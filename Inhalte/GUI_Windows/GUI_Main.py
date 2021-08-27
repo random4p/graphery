@@ -3,9 +3,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 #from DashTab import DashTab
 
-from Window_Elements.MenuBar import MakeMenuBar
-from Window_Elements.DashTab import DashTab
-from Window_Elements.StyleSheet import Style
+import Inhalte.GUI_Windows.Window_Elements.DashTab
+import Inhalte.GUI_Windows.Window_Elements.MenuBar 
+ 
+#from Window_Elements.StyleSheet import Style
 
 class Window(QMainWindow):
     
@@ -20,7 +21,7 @@ class Window(QMainWindow):
         self.top = 10
         self.width = 640
         self.height = 400
-        MakeMenuBar(self)
+        Inhalte.GUI_Windows.Window_Elements.MenuBar.MakeMenuBar(self)
         
 
         #Style(self)
@@ -43,16 +44,18 @@ class MyTableWidget(QWidget):
         self.plot = QWidget()
         self.stat = QWidget()
         self.info = QWidget()
+        self.data_prep = QWidget()
         self.tabs.resize(300,200)
 
         #add attributes to tabs
-        DashTab(self.dash, self.tabs)
+        Inhalte.GUI_Windows.Window_Elements.DashTab.DashTab(self.dash, self.tabs)
         
         # Add specific tabs to tab-layout
-        self.tabs.addTab(self.dash,"Dashboard")
-        self.tabs.addTab(self.plot,"Plot")
-        self.tabs.addTab(self.stat,"Statistics")
-        self.tabs.addTab(self.info,"Info")
+        self.tabs.addTab(self.dash,"          Dashboard           ")
+        self.tabs.addTab(self.plot,"   Plot   ")
+        self.tabs.addTab(self.stat,"   Statistics   ")
+        self.tabs.addTab(self.info,"   Info   ")
+        self.tabs.addTab(self.data_prep,"   Data Preparation   ")
 
     
         #dont delete

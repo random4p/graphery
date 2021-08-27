@@ -52,10 +52,10 @@ class MyTableWidget(QWidget):
         
         # Add specific tabs to tab-layout
         self.tabs.addTab(self.dash,"          Dashboard           ")
-        self.tabs.addTab(self.plot,"   Plot   ")
-        self.tabs.addTab(self.stat,"   Statistics   ")
-        self.tabs.addTab(self.info,"   Info   ")
-        self.tabs.addTab(self.data_prep,"   Data Preparation   ")
+        self.tabs.addTab(self.plot,"        Plot        ")
+        self.tabs.addTab(self.stat,"          Statistics            ")
+        self.tabs.addTab(self.info,"         Info           ")
+        self.tabs.addTab(self.data_prep,"              Data Preparation             ")
 
     
         #dont delete

@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ebffa2-660c-4d4f-b196-2bb51b941219" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Database/fds.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Main_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/main_window_sample.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Start.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Data_Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Data_Manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DashTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DashTab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DataPrep.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DataPrep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/MenuBar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/MenuBar.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +42,39 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Main.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Inhalte" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\patri\Documents\graphery\Inhalte\GUI_Windows\Sample_Files" />
+      <recent name="C:\Users\patri\Documents\graphery\Inhalte\GUI_Windows\Window_Elements" />
       <recent name="C:\Users\patri\Documents\graphery\Inhalte\GUI_Windows" />
+      <recent name="C:\Users\patri\Documents\graphery\Inhalte\GUI_Windows\Sample_Files" />
       <recent name="C:\Users\patri\Documents\graphery\Inhalte\GUI_Windows\Tabs" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.GUI_Start">
+  <component name="RunManager" selected="Python.DataPrep">
+    <configuration name="DataPrep" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="graphery" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DataPrep.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Data_Manager" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphery" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -129,41 +159,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="graphery" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Inhalte/GUI_Windows" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Inhalte/GUI_Windows/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="Python.Data_Manager" />
       <item itemvalue="Python.GUI_Main" />
       <item itemvalue="Python.GUI_Start" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.Main" />
-      <item itemvalue="Python.Data_Manager" />
+      <item itemvalue="Python.DataPrep" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.GUI_Start" />
+        <item itemvalue="Python.DataPrep" />
         <item itemvalue="Python.Main" />
         <item itemvalue="Python.GUI_Main" />
+        <item itemvalue="Python.GUI_Start" />
         <item itemvalue="Python.Data_Manager" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -204,34 +213,50 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="140" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1368.872@0.0.1368.872" timestamp="1629900292536" />
-    <state x="465" y="192" key="FileChooserDialogImpl" timestamp="1629900289317">
+    <state x="454" y="266" key="#com.intellij.tools.ToolEditorDialog" timestamp="1630084295662">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="465" y="192" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1629900289317" />
-    <state width="1348" height="91" key="GridCell.Tab.0.bottom" timestamp="1629901850209">
+    <state x="454" y="266" key="#com.intellij.tools.ToolEditorDialog/0.0.1368.872@0.0.1368.872" timestamp="1630084295662" />
+    <state x="465" y="192" key="FileChooserDialogImpl" timestamp="1630080845151">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="91" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1629901850209" />
-    <state width="1348" height="91" key="GridCell.Tab.0.center" timestamp="1629901850209">
+    <state x="465" y="192" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1630080845151" />
+    <state width="1348" height="183" key="GridCell.Tab.0.bottom" timestamp="1630085888289">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="91" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1629901850209" />
-    <state width="1348" height="91" key="GridCell.Tab.0.left" timestamp="1629901850208">
+    <state width="1348" height="183" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1630085888289" />
+    <state width="1348" height="183" key="GridCell.Tab.0.center" timestamp="1630085888289">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="91" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1629901850208" />
-    <state width="1348" height="91" key="GridCell.Tab.0.right" timestamp="1629901850209">
+    <state width="1348" height="183" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1630085888289" />
+    <state width="1348" height="183" key="GridCell.Tab.0.left" timestamp="1630085888289">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="91" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1629901850209" />
-    <state x="380" y="262" key="com.intellij.ide.util.TipDialog" timestamp="1629886605892">
+    <state width="1348" height="183" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1630085888289" />
+    <state width="1348" height="183" key="GridCell.Tab.0.right" timestamp="1630085888289">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="380" y="262" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1629886605892" />
-    <state x="492" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1629785439368">
+    <state width="1348" height="183" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1630085888289" />
+    <state x="131" y="77" key="MergeDialog" timestamp="1630063253057">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="492" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1629785439368" />
+    <state x="131" y="77" key="MergeDialog/0.0.1368.872@0.0.1368.872" timestamp="1630063253057" />
+    <state x="397" y="153" key="MultipleFileMergeDialog" timestamp="1630063253066">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="397" y="153" key="MultipleFileMergeDialog/0.0.1368.872@0.0.1368.872" timestamp="1630063253066" />
+    <state x="186" y="80" width="994" height="706" key="SettingsEditor" timestamp="1630084297142">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="186" y="80" width="994" height="706" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1630084297142" />
+    <state x="380" y="262" key="com.intellij.ide.util.TipDialog" timestamp="1629965204420">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="380" y="262" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1629965204420" />
+    <state x="492" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1630067365539">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="492" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1630067365539" />
     <state x="347" y="184" width="672" height="678" key="search.everywhere.popup" timestamp="1629717493904">
       <screen x="0" y="0" width="1368" height="872" />
     </state>

@@ -2,17 +2,17 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
+
 class DashTab(QWidget):
-    
 
     def __init__(self, parent, parent_2):
         super(QWidget, self).__init__(parent)
-        
-        #add layout to dashboard
+
+        # add layout to dashboard
         parent.layout = QGridLayout()
         parent.layout.maximumSize()
 
-        #input box with confirmation box for changing dimensions
+        # input box with confirmation box for changing dimensions
         dash_rows = QDoubleSpinBox(parent)
         dash_rows.move(10, 10)
         dash_label_row = QLabel("Rows", parent)
@@ -24,18 +24,20 @@ class DashTab(QWidget):
         dash_label_col.move(320, 10)
         dash_confirm = QPushButton("confirm", parent)
         dash_confirm.move(400, 10)
-        
-        #messagebox if confirm button is clicked
+
+        # messagebox if confirm button is clicked
         dash_confirm.clicked.connect(lambda: Warning_Window())
+
         def Warning_Window():
-            reply = QMessageBox.question(self, 'Change Dimensions', 
-            'Changing of dimensions leads to loss of plots and statistics. You have choosen {row} rows and {col} columns'.format(row = int(dash_rows.value()), col = int(dash_cols.value())),
-            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            reply = QMessageBox.question(self, 'Change Dimensions',
+                                         'Changing of dimensions leads to loss of plots and statistics. You have choosen {row} rows and {col} columns'.format(
+                                             row=int(dash_rows.value()), col=int(dash_cols.value())),
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if reply == QMessageBox.Yes:
                 spin_method()
             else:
                 pass
-        
+
         def switch_window():
             pop_window = QMainWindow(parent)
             pop_window.setWindowTitle("Plot or Statistics")
@@ -48,27 +50,26 @@ class DashTab(QWidget):
             CentralWidgetLayout.addWidget(stat_button)
             CentralWidget.setLayout(CentralWidgetLayout)
             pop_window.setCentralWidget(CentralWidget)
-            
+
             plot_button.clicked.connect(lambda: parent_2.setCurrentIndex(1))
             plot_button.clicked.connect(lambda: pop_window.close())
             stat_button.clicked.connect(lambda: parent_2.setCurrentIndex(2))
             stat_button.clicked.connect(lambda: pop_window.close())
             pop_window.show()
-    
-        #confirmation of dimension change box leads to creation of grid
-        #maximum num of rows and colums is 6
+
+        # confirmation of dimension change box leads to creation of grid
+        # maximum num of rows and columns is 6
         def spin_method():
             parent.list_of_buttons = []
-            
+
             for i in range(int(dash_rows.value())):
-                    for j in range(int(dash_cols.value())):
-                            plus = QPushButton("+")
-                            plus.setFixedSize(QSize(30, 30))
-                            parent.layout.addWidget(plus,i, j)
-                            parent.list_of_buttons.append(plus)
+                for j in range(int(dash_cols.value())):
+                    plus = QPushButton("+")
+                    plus.setFixedSize(QSize(30, 30))
+                    parent.layout.addWidget(plus, i, j)
+                    parent.list_of_buttons.append(plus)
 
             for button in parent.list_of_buttons:
                 button.clicked.connect(lambda: switch_window())
-            
-                 
+
         parent.setLayout(parent.layout)

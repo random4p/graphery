@@ -6,6 +6,7 @@ from PyQt5.QtCore import *
 import Inhalte.GUI_Windows.Window_Elements.DashTab
 import Inhalte.GUI_Windows.Window_Elements.MenuBar
 import Inhalte.GUI_Windows.Window_Elements.DataPrep
+import Inhalte.GUI_Windows.Window_Elements.PlotTab
  
 #from Window_Elements.StyleSheet import Style
 

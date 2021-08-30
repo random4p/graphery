@@ -2,10 +2,11 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt, QAbstractTableModel
 from pandas import read_csv
-import numpy
+from pandas import DataFrame
 
-DATA_SAMPLE = "Inhalte/GUI_Windows/Sample_Files/apple.csv"
-data = read_csv(DATA_SAMPLE)
+DATA_SAMPLE = "Inhalte/GUI_Windows/Sample_Files/text.txt"
+data = read_csv(DATA_SAMPLE, delimiter=",")
+data = DataFrame.from_dict(data)
 
 
 class DataPrep(QWidget):
@@ -14,9 +15,13 @@ class DataPrep(QWidget):
         self.data = read_csv(DATA_SAMPLE)
 
         table = TableCreator(self.data)
+        qbox = QBoxLayout()
+        qbox.
         view = QTableView()
         view.setModel(table)
         view.show()
+
+        self.addWidget(view)
 
 
 class TableCreator(QAbstractTableModel):
@@ -36,10 +41,10 @@ class TableCreator(QAbstractTableModel):
                 return str(self.data.iloc(index.row(), index.column()))
         return None
 
-    def headerData(self, section: int, orientation: Qt.Orientation, role: int = ...):
-        if orientation == Qt.Horizontal and role == Qt.DisplayRole:
-            return self.data.columns[section]
-        return None
+    # def headerData(self, section: int, orientation: Qt.Orientation, role: int = ...):
+    #     if orientation == Qt.Horizontal and role == Qt.DisplayRole:
+    #         return self.data.columns[section]
+    #     return None
 
 
 

@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class DashTab(QWidget):
+class ConfigureDashTab(QWidget):
 
     def __init__(self, parent, parent_2):
         super(QWidget, self).__init__(parent)

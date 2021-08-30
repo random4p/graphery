@@ -1,10 +1,11 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-#from DashTab import DashTab
+
 
 import Inhalte.GUI_Windows.Window_Elements.DashTab
 import Inhalte.GUI_Windows.Window_Elements.MenuBar 
+import Inhalte.GUI_Windows.Window_Elements.PlotTab
  
 #from Window_Elements.StyleSheet import Style
 
@@ -48,7 +49,8 @@ class MyTableWidget(QWidget):
         self.tabs.resize(300, 200)
 
         #add attributes to tabs
-        Inhalte.GUI_Windows.Window_Elements.DashTab.DashTab(self.dash, self.tabs)
+        Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
+        Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.tabs)
         
         # Add specific tabs to tab-layout
         self.tabs.addTab(self.dash,"                    Dashboard                    ")

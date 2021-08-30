@@ -13,12 +13,12 @@ class DashTab(QWidget):
         parent.layout.maximumSize()
 
         # input box with confirmation box for changing dimensions
-        dash_rows = QDoubleSpinBox(parent)
+        dash_rows = QSpinBox(parent)
         dash_rows.move(10, 10)
         dash_label_row = QLabel("Rows", parent)
         dash_label_row.move(125, 10)
         dash_label_row.setWordWrap(True)
-        dash_cols = QDoubleSpinBox(parent)
+        dash_cols = QSpinBox(parent)
         dash_cols.move(200, 10)
         dash_label_col = QLabel("Columns", parent)
         dash_label_col.move(320, 10)

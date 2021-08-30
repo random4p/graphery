@@ -3,10 +3,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class ConfigureDashTab(QWidget):
+class ConfigureDashTab():
 
     def __init__(self, parent, parent_2):
-        super(QWidget, self).__init__(parent)
 
         # add layout to dashboard
         parent.layout = QGridLayout()
@@ -29,7 +28,7 @@ class ConfigureDashTab(QWidget):
         dash_confirm.clicked.connect(lambda: Warning_Window())
 
         def Warning_Window():
-            reply = QMessageBox.question(self, 'Change Dimensions',
+            reply = QMessageBox.question(parent, 'Change Dimensions',
                                          'Changing of dimensions leads to loss of plots and statistics. You have choosen {row} rows and {col} columns'.format(
                                              row=int(dash_rows.value()), col=int(dash_cols.value())),
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)

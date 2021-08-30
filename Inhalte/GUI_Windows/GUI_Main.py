@@ -1,15 +1,17 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-#from DashTab import DashTab
+# from DashTab import DashTab
 
 import Inhalte.GUI_Windows.Window_Elements.DashTab
-import Inhalte.GUI_Windows.Window_Elements.MenuBar 
- 
-#from Window_Elements.StyleSheet import Style
+import Inhalte.GUI_Windows.Window_Elements.MenuBar
+import Inhalte.GUI_Windows.Window_Elements.DataPrep
+
+
+# from Window_Elements.StyleSheet import Style
 
 class Window(QMainWindow):
-    
+
     def __init__(self):
         super().__init__()
         self.title = 'Graphery'
@@ -22,24 +24,23 @@ class Window(QMainWindow):
         self.width = 640
         self.height = 400
         Inhalte.GUI_Windows.Window_Elements.MenuBar.MakeMenuBar(self)
-        
 
-        #Style(self)
+        # Style(self)
 
         self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
-    
+
 
 class MyTableWidget(QWidget):
-    
+
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
         self.layout = QVBoxLayout(self)
-        
+
         # Initialize tab screen
         self.tabs = QTabWidget()
-        
-        #create Tabs
+
+        # create Tabs
         self.dash = QWidget()
         self.plot = QWidget()
         self.stat = QWidget()
@@ -47,17 +48,17 @@ class MyTableWidget(QWidget):
         self.data_prep = QWidget()
         self.tabs.resize(300, 200)
 
-        #add attributes to tabs
+        # add attributes to tabs
         Inhalte.GUI_Windows.Window_Elements.DashTab.DashTab(self.dash, self.tabs)
-        
-        # Add specific tabs to tab-layout
-        self.tabs.addTab(self.dash,"                    Dashboard                    ")
-        self.tabs.addTab(self.plot,"                    Plot                    ")
-        self.tabs.addTab(self.stat,"                    Statistics                    ")
-        self.tabs.addTab(self.info,"                    Info                    ")
-        self.tabs.addTab(self.data_prep,"                    Data Preparation                    ")
+        Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs)
 
-    
-        #dont delete
+        # Add specific tabs to tab-layout
+        self.tabs.addTab(self.dash, "                    Dashboard                    ")
+        self.tabs.addTab(self.plot, "                    Plot                    ")
+        self.tabs.addTab(self.stat, "                    Statistics                    ")
+        self.tabs.addTab(self.info, "                    Info                    ")
+        self.tabs.addTab(self.data_prep, "                    Data Preparation                    ")
+
+        # dont delete
         self.layout.addWidget(self.tabs)
-        self.setLayout(self.layout)    
+        self.setLayout(self.layout)

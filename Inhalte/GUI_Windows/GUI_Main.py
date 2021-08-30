@@ -50,7 +50,7 @@ class MyTableWidget(QWidget):
 
         #configure different tabs
         Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
-        Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.tabs)
+        Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot)
         
         # Add specific tabs to tab-layout
         self.tabs.addTab(self.dash,"                    Dashboard                    ")

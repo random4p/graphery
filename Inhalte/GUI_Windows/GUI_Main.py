@@ -49,7 +49,7 @@ class MyTableWidget(QWidget):
         #self.data_prep = QWidget()
         self.tabs.resize(300, 200)
 
-        #add attributes to tabs
+        #configure different tabs
         Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
         Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs)
         

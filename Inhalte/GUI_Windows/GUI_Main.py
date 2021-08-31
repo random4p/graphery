@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 # from DashTab import DashTab
 
+
 import Inhalte.GUI_Windows.Window_Elements.DashTab
 import Inhalte.GUI_Windows.Window_Elements.MenuBar 
 #from Window_Elements.StyleSheet import Style
@@ -14,8 +15,13 @@ import Inhalte.GUI_Windows.Window_Elements.PlotTab
 
 class Window(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, data_set):
         super().__init__()
+
+        # this is the data manager object to be used --> give to the tabs to work with
+        self.data_set = data_set
+
+        # window configurations
         self.title = 'Graphery'
         self.setWindowTitle("Graphery")
         self.setGeometry(100, 60, 1000, 800)
@@ -30,14 +36,15 @@ class Window(QMainWindow):
 
         # Style(self)
 
-        self.table_widget = MyTableWidget(self)
+        self.table_widget = MyTableWidget(self, self.data_set)
         self.setCentralWidget(self.table_widget)
 
 
 class MyTableWidget(QWidget):
 
-    def __init__(self, parent):
+    def __init__(self, parent, data_set):
         super(QWidget, self).__init__(parent)
+        self.data_set = data_set
         self.layout = QVBoxLayout(self)
 
         # Initialize tab screen
@@ -54,7 +61,7 @@ class MyTableWidget(QWidget):
         # configure different tabs
         Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
         Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot)
-        Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs)
+        Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs, self.data_set)
 
         # Add specific tabs to tab-layout
         self.tabs.addTab(self.dash, "                    Dashboard                    ")

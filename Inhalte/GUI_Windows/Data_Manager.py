@@ -44,6 +44,8 @@ class DataManager:
                 print("File could not be found.")
 
 
+    def keys(self):
+        return self.data.keys()
 
 
 

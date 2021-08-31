@@ -1,6 +1,9 @@
 # open and import window
 
 # imports
+import sys
+from Inhalte.GUI_Windows.GUI_Main import Window
+from PyQt5.QtWidgets import QApplication
 from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog, Entry, messagebox
 import Data_Manager
 from os import listdir
@@ -28,14 +31,30 @@ def import_file():
         name = app.entry_name.get()
         data_set = Data_Manager.DataManager(file, file_type, name)
         app.destroy()
+        print("DATA LOADED")
+
+        if __name__ == '__main__':
+            print("START MAIN")
+            main = QApplication(sys.argv)
+            main.setStyle("Fusion")
+            ex = Window(data_set)
+            print("END MAIN")
+            sys.exit(main.exec_())
     except FileNotFoundError:
         print("File was not found.")
     except AttributeError:
         print("Object does not have this attribute.")
 
+
 def open_file():
     if app.entry_name.get() in existing_projects:
         data_set = Data_Manager.DataManager(name=app.entry_name.get(), mode="open")
+        app.destroy()
+        if __name__ == '__main__':
+            main = QApplication(sys.argv)
+            main.setStyle("Fusion")
+            ex = Window(data_set)
+            sys.exit(main.exec_())
     else:
         messagebox.showerror("FileNotFoundError", "This file does not exist. Maybe you want to import a data set.")
 

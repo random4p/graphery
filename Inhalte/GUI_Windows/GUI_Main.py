@@ -6,6 +6,7 @@ from PyQt5.QtCore import *
 import Inhalte.GUI_Windows.Window_Elements.DashTab
 import Inhalte.GUI_Windows.Window_Elements.MenuBar
 import Inhalte.GUI_Windows.Window_Elements.DataPrep
+import Inhalte.GUI_Windows.Window_Elements.PlotTab
  
 #from Window_Elements.StyleSheet import Style
 
@@ -50,7 +51,7 @@ class MyTableWidget(QWidget):
 
         #configure different tabs
         Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
-        Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs)
+        Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot)
         
         # Add specific tabs to tab-layout
         self.tabs.addTab(self.dash,"                    Dashboard                    ")

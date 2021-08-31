@@ -46,7 +46,6 @@ class MyTableWidget(QWidget):
         self.stat = QWidget()
         self.info = QWidget()
         self.data_prep = QWidget()
-        #self.data_prep = QWidget()
         self.tabs.resize(300, 200)
 
         #configure different tabs

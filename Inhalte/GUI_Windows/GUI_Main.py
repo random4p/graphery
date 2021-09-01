@@ -42,10 +42,10 @@ class Window(QMainWindow):
 
 class MyTableWidget(QWidget):
 
-    #def __init__(self, parent, data_set):
-    def __init__(self, parent):
+    def __init__(self, parent, data_set):
+    #def __init__(self, parent):
         super(QWidget, self).__init__(parent)
-        #self.data_set = data_set
+        self.data_set = data_set
         self.layout = QVBoxLayout(self)
 
         # Initialize tab screen

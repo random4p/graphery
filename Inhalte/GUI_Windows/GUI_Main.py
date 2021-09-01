@@ -11,11 +11,10 @@ import Inhalte.GUI_Windows.Window_Elements.DataPrep
 import Inhalte.GUI_Windows.Window_Elements.PlotTab
 
 
-# from Window_Elements.StyleSheet import Style
-
 class Window(QMainWindow):
 
     def __init__(self, data_set):
+    #def __init__(self):
         super().__init__()
 
         # this is the data manager object to be used --> give to the tabs to work with
@@ -37,14 +36,16 @@ class Window(QMainWindow):
         # Style(self)
 
         self.table_widget = MyTableWidget(self, self.data_set)
+        self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
 
 
 class MyTableWidget(QWidget):
 
-    def __init__(self, parent, data_set):
+    #def __init__(self, parent, data_set):
+    def __init__(self, parent):
         super(QWidget, self).__init__(parent)
-        self.data_set = data_set
+        #self.data_set = data_set
         self.layout = QVBoxLayout(self)
 
         # Initialize tab screen

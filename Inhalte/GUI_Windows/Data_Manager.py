@@ -3,7 +3,7 @@ import json
 from sqlalchemy import create_engine
 
 
-type_of_data = ["categorical", "numerical-finite", "numerical_infinte", "continuous", "qualitative-nominal",
+type_of_data = ["categorical", "numerical-finite", "numerical-infinite", "continuous", "qualitative-nominal",
                 "qualitative-ordinal", "quantitative-interval", "quantitative-ratios"]
 
 # ----------------------------DATA_MANAGEMENT---------------------------------#
@@ -42,7 +42,6 @@ class DataManager:
                 self.data = read_sql_table(self.name, self.engine)
             except FileNotFoundError:
                 print("File could not be found.")
-
 
     def keys(self):
         return self.data.keys()

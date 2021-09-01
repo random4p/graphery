@@ -1,13 +1,18 @@
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPainter
 from PyQt5.QtWidgets import *
-from pandas import read_csv, DataFrame
 
 # DATA_SAMPLE1 = "Sample_Files/apple.csv"
 # data = read_csv(DATA_SAMPLE1, delimiter=",")
 # data = DataFrame.from_dict(data)
 
-type_of_data = ["categorical", "numerical-finite", "numerical-infinite", "continuous", "qualitative-nominal",
-                "qualitative-ordinal", "quantitative-interval", "quantitative-ratios"]
+# nominal: categorization into groups
+# binary: yes or no
+# ordinal: categorization - can be set into relation with other categories
+# continuous/ ratio-scale: height, weight, time
+
+
+
+type_of_data = ["binary", "nominal", "ordinal", "continuous/ratio-scale"]
 
 class DataPrep:
     def __init__(self, parent, parent_2, data_set):
@@ -26,10 +31,13 @@ class DataPrep:
         settings_3_widget.setMaximumHeight(200)
 
         # QComboBox to specify type of data
+        self.specification_combo_box_list = []
         for i in range(len(self.data_set.data.keys())):
             specification_combo_box = QComboBox()
+            specification_combo_box.addItem(f"{i+1}. Row")
             specification_combo_box.addItems(type_of_data)
             specification_combo_box.setMinimumSize(500, 50)
+            self.specification_combo_box_list.append(specification_combo_box)
             row_specification_layout.addWidget(specification_combo_box, i+1, 0)
 
         # Label
@@ -39,7 +47,7 @@ class DataPrep:
         explanation_1.setWordWrap(True)
 
         explanation_2 = QLabel(
-            "2. It is possible to filter the data or to replace specific values with personalized values: ",
+            "2. It is possible to filter the data or to replace specific values with personalized ones: ",
             settings_2_widget)
         explanation_2.move(0, 80)
         explanation_2.setFont(QFont('Arial', 10))
@@ -57,8 +65,13 @@ class DataPrep:
 
         # button
         filter_button = QPushButton("Filter")
+        filter_button.clicked.connect(lambda: self.filter_data())
+
         substitution_button = QPushButton("Substitute")
+        substitution_button.clicked.connect(lambda: self.substitute_data())
+
         apply_button = QPushButton("Apply")
+        apply_button.clicked.connect(lambda: self.confirm_changes())
 
         # create table with data
         self.parent.table_widget = QTableWidget()
@@ -73,6 +86,7 @@ class DataPrep:
         self.parent.layout.addWidget(substitution_button, 4, 1)
         self.parent.layout.addWidget(settings_3_widget, 5, 1)
         self.parent.layout.addWidget(apply_button, 6, 1)
+
         self.parent.setLayout(parent.layout)
 
     def create_table(self):
@@ -86,7 +100,40 @@ class DataPrep:
         for i in range(len(self.data_set.data.keys())):
             self.parent.table_widget.setColumnWidth(i, 250)
 
+    def filter_data(self):
+        for i in self.specification_combo_box_list:
+            if "Row" in i.currentText():
+                return
+        self.filter_window = FilterPopup()
+        self.filter_window.setGeometry(700, 700, 1000, 700)
+        self.filter_window.show()
 
+
+    def substitute_data(self):
+        for i in self.specification_combo_box_list:
+            if "Row" in i.currentText():
+                return
+        self.substitute_window = SubstituteWindow()
+        self.substitute_window.setGeometry(700, 700, 1000, 700)
+        self.substitute_window.show()
+
+    def confirm_changes(self):
+        pass
+
+
+class FilterPopup(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
+
+    def paintEvent(self, e):
+        dc = QPainter(self)
+        dc.drawLine(0, 0, 100, 100)
+        dc.drawLine(100, 0, 0, 100)
+
+
+class SubstituteWindow(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
 
 
 

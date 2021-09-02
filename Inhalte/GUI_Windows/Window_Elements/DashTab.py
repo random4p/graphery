@@ -13,16 +13,27 @@ class ConfigureDashTab():
 
         # input box with confirmation box for changing dimensions
         dash_rows = QSpinBox(parent)
-        dash_rows.move(10, 10)
+        dash_rows.move(10, 20)
+        dash_rows.resize(100, 40)
+
         dash_label_row = QLabel("Rows", parent)
-        dash_label_row.move(125, 10)
+        dash_label_row.setFont(QFont("Arial", 15))
+        dash_label_row.move(112, 24)
         dash_label_row.setWordWrap(True)
+
         dash_cols = QSpinBox(parent)
-        dash_cols.move(200, 10)
+        dash_cols.resize(100, 40)
+        dash_cols.move(230, 20)
+
         dash_label_col = QLabel("Columns", parent)
-        dash_label_col.move(320, 10)
-        dash_confirm = QPushButton("confirm", parent)
-        dash_confirm.move(400, 10)
+        dash_label_col.setFont(QFont("Arial", 15))
+        dash_label_col.move(330, 24)
+        dash_label_col.setMinimumWidth(600)
+        dash_label_col.setWordWrap(True)
+
+        dash_confirm = QPushButton("Confirm", parent)
+        dash_confirm.resize(230, 40)
+        dash_confirm.move(500, 20)
 
         # messagebox if confirm button is clicked
         dash_confirm.clicked.connect(lambda: Warning_Window())

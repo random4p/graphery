@@ -135,8 +135,6 @@ class FilterPopup(QWidget):
         self.setLayout(self.layout)
 
 
-
-
 class SubstituteWindow(QWidget):
     def __init__(self):
         QWidget.__init__(self)

@@ -11,8 +11,8 @@ from PyQt5.QtWidgets import *
 # continuous/ ratio-scale: height, weight, time
 
 
-
 type_of_data = ["binary", "nominal", "ordinal", "continuous/ratio-scale"]
+
 
 class DataPrep:
     def __init__(self, parent, parent_2, data_set):
@@ -34,11 +34,11 @@ class DataPrep:
         self.specification_combo_box_list = []
         for i in range(len(self.data_set.data.keys())):
             specification_combo_box = QComboBox()
-            specification_combo_box.addItem(f"{i+1}. Row")
+            specification_combo_box.addItem(f"{i + 1}. Row")
             specification_combo_box.addItems(type_of_data)
             specification_combo_box.setMinimumSize(500, 50)
             self.specification_combo_box_list.append(specification_combo_box)
-            row_specification_layout.addWidget(specification_combo_box, i+1, 0)
+            row_specification_layout.addWidget(specification_combo_box, i + 1, 0)
 
         # Label
         explanation_1 = QLabel("1. REQUIRED: Please specify the type of data for every row", settings_widget)
@@ -101,13 +101,12 @@ class DataPrep:
             self.parent.table_widget.setColumnWidth(i, 250)
 
     def filter_data(self):
-        for i in self.specification_combo_box_list:
-            if "Row" in i.currentText():
-                return
-        self.filter_window = FilterPopup()
-        self.filter_window.setGeometry(700, 700, 1000, 700)
+        # for i in self.specification_combo_box_list:
+        #     if "Row" in i.currentText():
+        #         return
+        self.filter_window = FilterPopup(self.data_set)
+        self.filter_window.setGeometry(700, 700, len(self.data_set.data.keys())*300, 700)
         self.filter_window.show()
-
 
     def substitute_data(self):
         for i in self.specification_combo_box_list:
@@ -122,13 +121,20 @@ class DataPrep:
 
 
 class FilterPopup(QWidget):
-    def __init__(self):
+    def __init__(self, data_set):
         QWidget.__init__(self)
+        self.setWindowTitle("Filter-Menu")
+        self.data_set = data_set
 
-    def paintEvent(self, e):
-        dc = QPainter(self)
-        dc.drawLine(0, 0, 100, 100)
-        dc.drawLine(100, 0, 0, 100)
+        self.layout = QGridLayout()
+        for i in range(len(self.data_set.data.keys())):
+            row_widget = RowWidget(self.data_set.data.keys()[i])
+            row_widget.show()
+            self.layout.addWidget(row_widget, 0, i)
+
+        self.setLayout(self.layout)
+
+
 
 
 class SubstituteWindow(QWidget):
@@ -136,4 +142,31 @@ class SubstituteWindow(QWidget):
         QWidget.__init__(self)
 
 
+class RowWidget(QWidget):
+    def __init__(self, row):
+        QWidget.__init__(self)
 
+        self.row = row
+
+        label = QLabel(f"{self.row}", self)
+        label.setFont(QFont("Arial", 12))
+        label.move(60, 20)
+        label.setWordWrap(True)
+
+        exclude_box = QCheckBox("Exclude Row", self)
+        exclude_box.setFont(QFont("Arial", 9))
+        exclude_box.move(20, 80)
+
+        label2 = QLabel("Enter a value that will be filtered:", self)
+        label2.setFont(QFont("Arial", 12))
+        label2.setWordWrap(True)
+        label2.setFont(QFont("Arial", 9))
+        label2.move(20, 120)
+
+        input_box = QLineEdit(self)
+        input_box.move(20, 180)
+        input_box.resize(400, 40)
+
+        add_button = QPushButton("+", self)
+        add_button.move(20, 230)
+        add_button.resize(30, 30)

@@ -36,7 +36,6 @@ class Window(QMainWindow):
         # Style(self)
 
         self.table_widget = MyTableWidget(self, self.data_set)
-        self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
 
 

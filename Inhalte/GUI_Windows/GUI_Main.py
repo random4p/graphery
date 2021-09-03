@@ -4,12 +4,16 @@ from PyQt5.QtCore import *
 # from DashTab import DashTab
 
 
-import Inhalte.GUI_Windows.Window_Elements.DashTab
-import Inhalte.GUI_Windows.Window_Elements.MenuBar 
+# import Inhalte.GUI_Windows.Window_Elements.DashTab
+# import Inhalte.GUI_Windows.Window_Elements.MenuBar 
+# #from Window_Elements.StyleSheet import Style
+# import Inhalte.GUI_Windows.Window_Elements.DataPrep
+# import Inhalte.GUI_Windows.Window_Elements.PlotTab
+import Window_Elements.DashTab
+import Window_Elements.MenuBar 
 #from Window_Elements.StyleSheet import Style
-import Inhalte.GUI_Windows.Window_Elements.DataPrep
-import Inhalte.GUI_Windows.Window_Elements.PlotTab
-
+import Window_Elements.DataPrep
+import Window_Elements.PlotTab
 
 class Window(QMainWindow):
 

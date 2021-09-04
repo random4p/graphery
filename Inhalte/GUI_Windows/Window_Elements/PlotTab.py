@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 
 class ConfigurePlotTab(QWidget):
 
-    def __init__(self, plot_tab):
+    def __init__(self, plot_tab, data_set):
         super(QWidget, self).__init__(plot_tab)
 
         # add layout to plot
@@ -111,6 +111,10 @@ class ConfigurePlotTab(QWidget):
         plot_label_input.setMaximumWidth(70)
         dim_layout_grid.addWidget(plot_label_input, 10, 2)
 
+        add_button = QPushButton("add Dashboard")
+        add_button.setMaximumWidth(100)
+        dim_layout_grid.addWidget(add_button, 11, 1)
+
         #toggle input box if box is checked or delete if not
         # def add_del_input(box, input, layout):
         #     if box.isChecked() == True:
@@ -125,9 +129,7 @@ class ConfigurePlotTab(QWidget):
             
         #configure layout where plot wil be displayed
         plot_layout_grid = QGridLayout()
-        test_text = QLabel("PLOT")
-        test_text.setMinimumWidth(250)
-        plot_layout_grid.addWidget(test_text, 0, 0)
+
         
         
         #scroll_dim_area.addLayout(dim_layout_grid)

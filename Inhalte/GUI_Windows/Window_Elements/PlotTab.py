@@ -6,6 +6,7 @@ from PyQt5.QtCore import *
 class ConfigurePlotTab(QWidget):
 
     def __init__(self, plot_tab, data_set):
+    #def __init__(self, plot_tab):
         super(QWidget, self).__init__(plot_tab)
 
         # add layout to plot

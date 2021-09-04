@@ -3,11 +3,11 @@
 # imports
 import sys
 #from Inhalte.GUI_Windows.GUI_Main import Window
+#from Inhalte.GUI_Windows import Data_Manager
 from GUI_Main import Window
+import Data_Manager
 from PyQt5.QtWidgets import QApplication
 from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog, Entry, messagebox
-import Data_Manager
-#from Inhalte.GUI_Windows import Data_Manager
 from os import listdir
 from os.path import isfile, join
 
@@ -74,8 +74,8 @@ class StartWindow(Tk):
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
         # canvas
-        #self.logo = PhotoImage(file="Images/graphery_logo.png")
-        self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
+        self.logo = PhotoImage(file="Images/graphery_logo.png")
+        #self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
         canvas.update()

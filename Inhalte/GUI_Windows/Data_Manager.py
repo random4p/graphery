@@ -30,6 +30,7 @@ class DataManager:
 
             try:
                 self.engine = create_engine(f"sqlite:///Database/{self.name}.db", echo=True)
+                #self.engine = create_engine(f"sqlite:///Inhalte/GUI_Windows/Database/{self.name}.db", echo=True)
                 self.data.to_sql(self.name, self.engine)
                 print("Data was loaded into the database.")
             except FileExistsError:
@@ -39,6 +40,7 @@ class DataManager:
         elif mode == "open":
             try:
                 self.engine = create_engine(f"sqlite:///Database/{self.name}.db", echo=True)
+                #self.engine = create_engine(f"sqlite:///Inhalte/GUI_Windows/Database/{self.name}.db", echo=True)
                 self.data = read_sql_table(self.name, self.engine)
             except FileNotFoundError:
                 print("File could not be found.")

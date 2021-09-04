@@ -4,16 +4,16 @@ from PyQt5.QtCore import *
 # from DashTab import DashTab
 
 
-import Inhalte.GUI_Windows.Window_Elements.DashTab
-import Inhalte.GUI_Windows.Window_Elements.MenuBar 
-#from Window_Elements.StyleSheet import Style
-import Inhalte.GUI_Windows.Window_Elements.DataPrep
-import Inhalte.GUI_Windows.Window_Elements.PlotTab
-# import Window_Elements.DashTab
-# import Window_Elements.MenuBar 
+# import Inhalte.GUI_Windows.Window_Elements.DashTab
+# import Inhalte.GUI_Windows.Window_Elements.MenuBar 
 # #from Window_Elements.StyleSheet import Style
-# import Window_Elements.DataPrep
-# import Window_Elements.PlotTab
+# import Inhalte.GUI_Windows.Window_Elements.DataPrep
+# import Inhalte.GUI_Windows.Window_Elements.PlotTab
+import Window_Elements.DashTab
+import Window_Elements.MenuBar 
+#from Window_Elements.StyleSheet import Style
+import Window_Elements.DataPrep
+import Window_Elements.PlotTab
 
 class Window(QMainWindow):
 
@@ -35,7 +35,8 @@ class Window(QMainWindow):
         self.width = 640
         self.height = 400
         self.showMaximized()
-        Inhalte.GUI_Windows.Window_Elements.MenuBar.MakeMenuBar(self)
+        #Inhalte.GUI_Windows.Window_Elements.MenuBar.MakeMenuBar(self)
+        Window_Elements.MenuBar.MakeMenuBar(self)
 
         # Style(self)
 
@@ -64,10 +65,15 @@ class MyTableWidget(QWidget):
         self.tabs.resize(300, 200)
 
         # configure different tabs
-        Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
-        Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.data_set)
+        # Inhalte.GUI_Windows.Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
+        # Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.data_set)
+        # #Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot)
+        # Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs, self.data_set)
+
+        Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
+        Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.data_set)
         #Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot)
-        Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs, self.data_set)
+        Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs, self.data_set)
         
 
         # Add specific tabs to tab-layout

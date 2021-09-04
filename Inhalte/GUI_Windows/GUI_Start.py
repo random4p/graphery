@@ -47,7 +47,6 @@ def import_file():
     except AttributeError:
         print("Object does not have this attribute.")
 
-
 def open_file():
     if app.entry_name.get() in existing_projects:
         data_set = Data_Manager.DataManager(name=app.entry_name.get(), mode="open")
@@ -120,7 +119,6 @@ class StartWindow(Tk):
             self.btn_import.config(state="disabled")
             self.btn_open.config(state="disabled")
             self.check_window(self.check_entry_field)
-
 
 app = StartWindow()
 app.check_window(app.check_entry_field)

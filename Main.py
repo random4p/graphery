@@ -11,6 +11,3 @@ if __name__ == '__main__':
     app.setStyle("Fusion")
     ex = Window()
     sys.exit(app.exec_())
-app = StartWindow()
-app.check_window(app.check_entry_field)
-app.mainloop()

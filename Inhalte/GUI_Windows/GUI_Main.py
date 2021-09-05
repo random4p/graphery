@@ -71,8 +71,7 @@ class MyTableWidget(QWidget):
         # Inhalte.GUI_Windows.Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs, self.data_set)
 
         Window_Elements.DashTab.ConfigureDashTab(self.dash, self.tabs)
-        Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.data_set)
-        #Inhalte.GUI_Windows.Window_Elements.PlotTab.ConfigurePlotTab(self.plot)
+        Window_Elements.PlotTab.ConfigurePlotTab(self.plot, self.data_set, parent)
         Window_Elements.DataPrep.DataPrep(self.data_prep, self.tabs, self.data_set)
         
 

@@ -50,6 +50,9 @@ class DataManager:
 
     def get_DataFrame_cl(self):
         return list(self.data.columns.values)
+    
+    def get_DataFrame(self):
+        return self.data
 
 
 

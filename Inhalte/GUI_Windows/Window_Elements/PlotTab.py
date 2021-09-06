@@ -27,7 +27,7 @@ class ConfigurePlotTab(QWidget):
         dim_layout_grid = QGridLayout(scrollAreaWidgetContents)
         scroll_dim_area.setWidget(scrollAreaWidgetContents)
 
-        
+        # configure area where settings will be done
         dim_layout_grid.setVerticalSpacing(60)
         dim_layout_grid.setContentsMargins(-2, 0, 0, 0)
         dim_label = QLabel("DIMENSION")
@@ -37,34 +37,60 @@ class ConfigurePlotTab(QWidget):
         dim_layout_grid.addWidget(dim_label, 0, 0)
         dim_layout_grid.addWidget(plot_label, 0, 1)
         
+        #confirm button to start plotting
         confirm_button = QPushButton("Confirm")
         confirm_button.setMaximumWidth(40)
         dim_layout_grid.addWidget(confirm_button, 0, 2)
         
         #get all column labels in a list
         self.data = data_set
-        #.drop_list_items = ["{sf}".format(sf = self.data.data[i].values) for i in self.data.data.keys()]
         self.drop_list_items = self.data.get_DataFrame_cl()
         self.drop_list_items.insert(0, "N/A")
         
-
+        #choose column to get data from 
         self.x_dim_droplist = QComboBox()
         self.x_dim_droplist.addItems(self.drop_list_items)
         dim_layout_grid.addWidget(self.x_dim_droplist, 1, 1)
         dim_layout_grid.addWidget(QLabel("X-DIMENSION"), 1, 0)
         
+        #choose column to get data from
         self.y_dim_droplist = QComboBox()
         self.y_dim_droplist.addItems(self.drop_list_items)
         dim_layout_grid.addWidget(self.y_dim_droplist, 2, 1)
         dim_layout_grid.addWidget(QLabel("Y-DIMENSION"), 2, 0)
         
+        #choose column to get data from
         self.z_dim_droplist = QComboBox()
         self.z_dim_droplist.addItems(self.drop_list_items)
         dim_layout_grid.addWidget(self.z_dim_droplist, 3, 1)
         dim_layout_grid.addWidget(QLabel("Z-DIMENSION"), 3, 0)
 
-        
+        #selection box to determine which plot will be used
+        select_plot = QLabel("Select Plot")
+        select_plot.setMaximumWidth(70)
+        self.select_plot_value = QComboBox()
+        self.list_of_plots = ["Line Plot", 
+                                "Bar Graph", 
+                                "Histogram", 
+                                "Scatter", 
+                                "Area Plot", 
+                                "Pie Chart", 
+                                "Box Plot", 
+                                "Hexagonal bin Plot", 
+                                "Density Plot", 
+                                "Andrews curves", 
+                                "Parallel Coordinates", 
+                                "Lag plot", 
+                                "Autocorrelation plot", 
+                                "Bootstrap plot", 
+                                "RadViz"
+                            ]
+        self.select_plot_value.addItems(self.list_of_plots)
+        dim_layout_grid.addWidget(select_plot, 1, 2)
+        dim_layout_grid.addWidget(self.select_plot_value, 2, 2)
 
+
+        #set some filters for plot
         dim_layout_grid.addWidget(QLabel("FILTER X-DIM"), 4, 0)
         x_filter_droplist = QComboBox()
         x_filter_droplist.addItems(["N/A", "=","<", ">", ">=", "<="])
@@ -112,30 +138,6 @@ class ConfigurePlotTab(QWidget):
         zfilter2_input = QLineEdit()
         zfilter2_input.setMaximumWidth(70)
         dim_layout_grid.addWidget(zfilter2_input, 9, 2)
-
-        # plot_label = QLabel("Label of the Plot")
-        # dim_layout_grid.addWidget(plot_label, 10, 0)
-        # plot_label_input = QLineEdit()
-        # plot_label_input.setMaximumWidth(70)
-        # dim_layout_grid.addWidget(plot_label_input, 10, 2)
-
-        # plot_xlabel = QLabel("Label of the X-Axes")
-        # dim_layout_grid.addWidget(plot_xlabel, 11, 0)
-        # plot_xlabel_input = QLineEdit()
-        # plot_xlabel_input.setMaximumWidth(70)
-        # dim_layout_grid.addWidget(plot_xlabel_input, 11, 2)
-
-        # plot_ylabel = QLabel("Label of the Y-Axes")
-        # dim_layout_grid.addWidget(plot_ylabel, 12, 0)
-        # plot_ylabel_input = QLineEdit()
-        # plot_ylabel_input.setMaximumWidth(70)
-        # dim_layout_grid.addWidget(plot_ylabel_input, 12, 2)
-
-        # plot_zlabel = QLabel("Label of the Z-Axes")
-        # dim_layout_grid.addWidget(plot_zlabel, 13, 0)
-        # plot_zlabel_input = QLineEdit()
-        # plot_zlabel_input.setMaximumWidth(70)
-        # dim_layout_grid.addWidget(plot_zlabel_input, 13, 2)
  
  
         ######plot layout
@@ -168,7 +170,9 @@ class ConfigurePlotTab(QWidget):
             # ax.hold(False) # deprecated, see above
 
             # plot data
-            ax.bar(test_list, data)
+            # ax.scatter(test_list, data)
+            ax.pie(data, autopct='%1.1f%%', labels = data, startangle=90)
+            ax.axis('equal')
             #ax.distplot(data, kde = False)
 
             # refresh canvas

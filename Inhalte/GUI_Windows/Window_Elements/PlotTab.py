@@ -1,11 +1,17 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
+import pandas as pd
+import random
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+import matplotlib.pyplot as plt
+from Data_Manager import DataManager
 
 class ConfigurePlotTab(QWidget):
 
-    def __init__(self, plot_tab):
+    def __init__(self, plot_tab, data_set, parent):
+    #def __init__(self, plot_tab):
         super(QWidget, self).__init__(plot_tab)
 
         # add layout to plot
@@ -36,23 +42,27 @@ class ConfigurePlotTab(QWidget):
         dim_layout_grid.addWidget(confirm_button, 0, 2)
         
         #get all column labels in a list
-        drop_list_items = []
-        drop_list_items.insert(0, "N/A")
+        self.data = data_set
+        #.drop_list_items = ["{sf}".format(sf = self.data.data[i].values) for i in self.data.data.keys()]
+        self.drop_list_items = self.data.get_DataFrame_cl()
+        self.drop_list_items.insert(0, "N/A")
+        
 
-        x_dim_droplist = QComboBox()
-        x_dim_droplist.addItems(drop_list_items)
-        dim_layout_grid.addWidget(x_dim_droplist, 1, 1)
+        self.x_dim_droplist = QComboBox()
+        self.x_dim_droplist.addItems(self.drop_list_items)
+        dim_layout_grid.addWidget(self.x_dim_droplist, 1, 1)
         dim_layout_grid.addWidget(QLabel("X-DIMENSION"), 1, 0)
         
-        y_dim_droplist = QComboBox()
-        y_dim_droplist.addItems(drop_list_items)
-        dim_layout_grid.addWidget(y_dim_droplist, 2, 1)
+        self.y_dim_droplist = QComboBox()
+        self.y_dim_droplist.addItems(self.drop_list_items)
+        dim_layout_grid.addWidget(self.y_dim_droplist, 2, 1)
         dim_layout_grid.addWidget(QLabel("Y-DIMENSION"), 2, 0)
         
-        z_dim_droplist = QComboBox()
-        z_dim_droplist.addItems(drop_list_items)
-        dim_layout_grid.addWidget(z_dim_droplist, 3, 1)
+        self.z_dim_droplist = QComboBox()
+        self.z_dim_droplist.addItems(self.drop_list_items)
+        dim_layout_grid.addWidget(self.z_dim_droplist, 3, 1)
         dim_layout_grid.addWidget(QLabel("Z-DIMENSION"), 3, 0)
+
         
 
         dim_layout_grid.addWidget(QLabel("FILTER X-DIM"), 4, 0)
@@ -103,34 +113,73 @@ class ConfigurePlotTab(QWidget):
         zfilter2_input.setMaximumWidth(70)
         dim_layout_grid.addWidget(zfilter2_input, 9, 2)
 
-        plot_label = QLabel("Label of the Plot")
-        label_checkbox = QCheckBox()
-        dim_layout_grid.addWidget(plot_label, 10, 0)
-        dim_layout_grid.addWidget(label_checkbox, 10, 1)
-        plot_label_input = QLineEdit()
-        plot_label_input.setMaximumWidth(70)
-        dim_layout_grid.addWidget(plot_label_input, 10, 2)
+        # plot_label = QLabel("Label of the Plot")
+        # dim_layout_grid.addWidget(plot_label, 10, 0)
+        # plot_label_input = QLineEdit()
+        # plot_label_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_label_input, 10, 2)
 
-        #toggle input box if box is checked or delete if not
-        # def add_del_input(box, input, layout):
-        #     if box.isChecked() == True:
-        #         dim_layout_grid.addWidget(input, 10, 2)
-        #     if not box.isChecked() == True:    
-        #         #dim_layout_grid.addWidget(QLabel("Mark Box as checked"), 10, 2)
-        #         del_input = layout.itemAtPosition(10, 2).widget()
-        #         del_input.deleteLater()
-            
-        # label_checkbox.stateChanged.connect(lambda : add_del_input(label_checkbox, plot_label_input, dim_layout_grid))
-        
-            
-        #configure layout where plot wil be displayed
+        # plot_xlabel = QLabel("Label of the X-Axes")
+        # dim_layout_grid.addWidget(plot_xlabel, 11, 0)
+        # plot_xlabel_input = QLineEdit()
+        # plot_xlabel_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_xlabel_input, 11, 2)
+
+        # plot_ylabel = QLabel("Label of the Y-Axes")
+        # dim_layout_grid.addWidget(plot_ylabel, 12, 0)
+        # plot_ylabel_input = QLineEdit()
+        # plot_ylabel_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_ylabel_input, 12, 2)
+
+        # plot_zlabel = QLabel("Label of the Z-Axes")
+        # dim_layout_grid.addWidget(plot_zlabel, 13, 0)
+        # plot_zlabel_input = QLineEdit()
+        # plot_zlabel_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_zlabel_input, 13, 2)
+ 
+ 
+        ######plot layout
         plot_layout_grid = QGridLayout()
-        test_text = QLabel("PLOT")
-        test_text.setMinimumWidth(250)
-        plot_layout_grid.addWidget(test_text, 0, 0)
+        plot_layout_inside_grid = QVBoxLayout()
+
+        plot_layout_inside_grid.figure = plt.figure()
+        plot_layout_inside_grid.canvas = FigureCanvas(plot_layout_inside_grid.figure)
+        plot_layout_inside_grid.toolbar = NavigationToolbar(plot_layout_inside_grid.canvas, parent)
+        
+
+        add_dashboard_button = QPushButton('Add Dashboard')
+        #add_dashboard_button.clicked.connect(add_dash)
+        
+        def plot_now():
+        
+            # random data
+            data = [random.random() for i in range(10)]
+            test_list = ["N{ini}".format(ini = i) for i in range(10)]
+
+            #values of colums
+
+            # instead of ax.hold(False)
+            plot_layout_inside_grid.figure.clear()
+
+            # create an axis
+            ax = plot_layout_inside_grid.figure.add_subplot(111)
+
+            # discards the old graph
+            # ax.hold(False) # deprecated, see above
+
+            # plot data
+            ax.bar(test_list, data)
+            #ax.distplot(data, kde = False)
+
+            # refresh canvas
+            plot_layout_inside_grid.canvas.draw()
+        confirm_button.clicked.connect(plot_now)
+        plot_layout_inside_grid.addWidget(plot_layout_inside_grid.toolbar)
+        plot_layout_inside_grid.addWidget(plot_layout_inside_grid.canvas)
+        plot_layout_inside_grid.addWidget(add_dashboard_button)
+        plot_layout_grid.addLayout(plot_layout_inside_grid, 0, 0)
         
         
-        #scroll_dim_area.addLayout(dim_layout_grid)
         plot_tab.layout.addWidget(scroll_dim_area, 0, 0)
         plot_tab.layout.addLayout(plot_layout_grid, 0, 1)
 

@@ -2,6 +2,7 @@
 
 import sys
 from Inhalte.GUI_Windows.GUI_Main import Window
+from Inhalte.GUI_Windows.GUI_Start import StartWindow
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import *
 

@@ -2,10 +2,12 @@
 
 # imports
 import sys
-from Inhalte.GUI_Windows.GUI_Main import Window
+#from Inhalte.GUI_Windows.GUI_Main import Window
+#from Inhalte.GUI_Windows import Data_Manager
+from GUI_Main import Window
+import Data_Manager
 from PyQt5.QtWidgets import QApplication
 from tkinter import Tk, Button, PhotoImage, Canvas, Label, filedialog, Entry, messagebox
-import Data_Manager
 from os import listdir
 from os.path import isfile, join
 
@@ -17,7 +19,8 @@ GREEN = "#5E8B7E"
 LIGHT_GREEN = "#A7C4BC"
 LIGHT_LIGHT_GREEN = "#DFEEEA"
 
-existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
+#existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
+existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join("Inhalte/GUI_Windows/Database", f))]
 
 # ----------------------------Import_Function----------------------------------#
 # missing that the user can only open or import a file if he has entered a name in the entry field !!!
@@ -45,7 +48,6 @@ def import_file():
     except AttributeError:
         print("Object does not have this attribute.")
 
-
 def open_file():
     if app.entry_name.get() in existing_projects:
         data_set = Data_Manager.DataManager(name=app.entry_name.get(), mode="open")
@@ -72,7 +74,8 @@ class StartWindow(Tk):
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
         # canvas
-        self.logo = PhotoImage(file="Images/graphery_logo.png")
+        #self.logo = PhotoImage(file="Images/graphery_logo.png")
+        self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
         canvas.update()
@@ -117,7 +120,6 @@ class StartWindow(Tk):
             self.btn_import.config(state="disabled")
             self.btn_open.config(state="disabled")
             self.check_window(self.check_entry_field)
-
 
 app = StartWindow()
 app.check_window(app.check_entry_field)

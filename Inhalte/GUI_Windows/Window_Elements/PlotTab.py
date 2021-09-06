@@ -69,7 +69,9 @@ class ConfigurePlotTab(QWidget):
         select_plot = QLabel("Select Plot")
         select_plot.setMaximumWidth(70)
         self.select_plot_value = QComboBox()
-        self.list_of_plots = ["Line Plot", 
+        self.list_of_plots = [
+                                "Plot-Type",
+                                "Line Plot", 
                                 "Bar Graph", 
                                 "Histogram", 
                                 "Scatter", 
@@ -167,16 +169,19 @@ class ConfigurePlotTab(QWidget):
             ax = plot_layout_inside_grid.figure.add_subplot(111)
 
             # discards the old graph
-            # ax.hold(False) # deprecated, see above
+            if self.select_plot_value.currentText() == "Line Plot":
+                ax.plot(test_list,data)
 
-            # plot data
-            # ax.scatter(test_list, data)
-            ax.pie(data, autopct='%1.1f%%', labels = data, startangle=90)
-            ax.axis('equal')
-            #ax.distplot(data, kde = False)
+            if self.select_plot_value.currentText() == "Scatter":
+                ax.scatter(test_list,data)
+
+            if self.select_plot_value.currentText() == "Pie Chart":
+                ax.pie(data, autopct='%1.1f%%', labels = data, startangle=90)
+                ax.axis('equal')
 
             # refresh canvas
             plot_layout_inside_grid.canvas.draw()
+        
         confirm_button.clicked.connect(plot_now)
         plot_layout_inside_grid.addWidget(plot_layout_inside_grid.toolbar)
         plot_layout_inside_grid.addWidget(plot_layout_inside_grid.canvas)

@@ -2,8 +2,8 @@
 
 # imports
 import sys
-#from Inhalte.GUI_Windows.GUI_Main import Window
-#from Inhalte.GUI_Windows import Data_Manager
+# from Inhalte.GUI_Windows.GUI_Main import Window
+# from Inhalte.GUI_Windows import Data_Manager
 from GUI_Main import Window
 import Data_Manager
 from PyQt5.QtWidgets import QApplication
@@ -19,8 +19,9 @@ GREEN = "#5E8B7E"
 LIGHT_GREEN = "#A7C4BC"
 LIGHT_LIGHT_GREEN = "#DFEEEA"
 
-#existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
-existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join("Inhalte/GUI_Windows/Database", f))]
+existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
+# existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join("Inhalte/GUI_Windows/Database", f))]
+
 
 # ----------------------------Import_Function----------------------------------#
 # missing that the user can only open or import a file if he has entered a name in the entry field !!!
@@ -34,19 +35,17 @@ def import_file():
         name = app.entry_name.get()
         data_set = Data_Manager.DataManager(file, file_type, name)
         app.destroy()
-        print("DATA LOADED")
 
         if __name__ == '__main__':
-            print("START MAIN")
             main = QApplication(sys.argv)
             main.setStyle("Fusion")
             ex = Window(data_set)
-            print("END MAIN")
             sys.exit(main.exec_())
     except FileNotFoundError:
         print("File was not found.")
     except AttributeError:
         print("Object does not have this attribute.")
+
 
 def open_file():
     if app.entry_name.get() in existing_projects:
@@ -74,8 +73,8 @@ class StartWindow(Tk):
             f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{int((self.winfo_screenwidth() / 2) - (WINDOW_WIDTH / 2))}+{int((self.winfo_screenheight() / 2) - (WINDOW_HEIGHT / 2))}")
 
         # canvas
-        #self.logo = PhotoImage(file="Images/graphery_logo.png")
-        self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
+        self.logo = PhotoImage(file="Images/graphery_logo.png")
+        # self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
         canvas.update()
@@ -91,13 +90,13 @@ class StartWindow(Tk):
 
         # Buttons
         self.btn_open = Button(bg=GREEN, text="Open",
-                          fg="White", width=20, pady=20, padx=20,
-                          font=("Arial", "18"), highlightthickness=0, borderwidth=0,
-                          command=open_file, state="disabled")
+                               fg="White", width=20, pady=20, padx=20,
+                               font=("Arial", "18"), highlightthickness=0, borderwidth=0,
+                               command=open_file, state="disabled")
         self.btn_import = Button(bg=GREEN, text="Import",
-                            fg="White", width=20, pady=20, padx=20,
-                            font=("Arial", "18"), highlightthickness=0, borderwidth=0,
-                            command=import_file, state="disabled")
+                                 fg="White", width=20, pady=20, padx=20,
+                                 font=("Arial", "18"), highlightthickness=0, borderwidth=0,
+                                 command=import_file, state="disabled")
         self.btn_import.grid(column=0, row=2)
         self.btn_open.grid(column=1, row=2)
 
@@ -120,6 +119,7 @@ class StartWindow(Tk):
             self.btn_import.config(state="disabled")
             self.btn_open.config(state="disabled")
             self.check_window(self.check_entry_field)
+
 
 app = StartWindow()
 app.check_window(app.check_entry_field)

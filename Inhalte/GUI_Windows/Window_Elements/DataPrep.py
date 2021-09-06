@@ -5,11 +5,10 @@ from PyQt5.QtWidgets import *
 # binary: yes or no
 # ordinal: categorization - can be set into relation with other categories
 # continuous/ ratio-scale: height, weight, time
-
-
 type_of_data = ["binary", "nominal", "ordinal", "continuous/ratio-scale"]
 
 
+# -----------------------------------------MAIN_DATAPREP_WINDOW------------------------------------------#
 class DataPrep:
     def __init__(self, parent, parent_2, data_set):
         self.data_set = data_set
@@ -17,7 +16,7 @@ class DataPrep:
         self.parent.layout = QGridLayout()
 
         # Boxes to better structure the GridLayout
-        row_specification_layout = QGridLayout()
+        self.row_specification_layout = QGridLayout()
         settings_widget = QWidget()
         settings_widget.setMaximumHeight(230)
         settings_2_widget = QWidget()
@@ -25,15 +24,16 @@ class DataPrep:
         settings_3_widget = QWidget()
         settings_3_widget.setMaximumHeight(200)
 
-        # QComboBox to specify type of data
+        # Boxes to specify the columns like described
         self.specification_combo_box_list = []
         for i in range(len(self.data_set.data.keys())):
             specification_combo_box = QComboBox()
             specification_combo_box.addItem(f"{i + 1}. Row")
             specification_combo_box.addItems(type_of_data)
             specification_combo_box.setMinimumSize(500, 50)
+            specification_combo_box.show()
             self.specification_combo_box_list.append(specification_combo_box)
-            row_specification_layout.addWidget(specification_combo_box, i + 1, 0)
+            self.row_specification_layout.addWidget(specification_combo_box, i + 1, 0)
 
         # Label
         explanation_1 = QLabel("1. REQUIRED: Please specify the type of data for every row", settings_widget)
@@ -73,7 +73,7 @@ class DataPrep:
 
         # add to the layout
         self.parent.layout.addWidget(settings_widget, 0, 1)
-        self.parent.layout.addLayout(row_specification_layout, 1, 1)
+        self.parent.layout.addLayout(self.row_specification_layout, 1, 1)
         self.parent.layout.addWidget(settings_2_widget, 2, 1)
         self.parent.layout.addWidget(filter_button, 3, 1)
         self.parent.layout.addWidget(substitution_button, 4, 1)
@@ -98,25 +98,26 @@ class DataPrep:
         self.parent.layout.addWidget(self.table_widget, 0, 0, 8, 1)
 
     def filter_data(self):
-        # for i in self.specification_combo_box_list:
-        #     if "Row" in i.currentText():
-        #         return
         self.filter_window = FilterPopup(self.data_set, self.create_table, self.table_widget)
         self.filter_window.setGeometry(700, 700, 1300, 700)
         self.filter_window.show()
 
     def substitute_data(self):
-        for i in self.specification_combo_box_list:
-            if "Row" in i.currentText():
-                return
-        self.substitute_window = SubstituteWindow()
-        self.substitute_window.setGeometry(700, 700, 1000, 700)
+        self.substitute_window = SubstituteWindow(self.data_set, self.create_table, self.table_widget)
+        self.substitute_window.setGeometry(700, 700, 600, 300)
         self.substitute_window.show()
 
     def confirm_changes(self):
-        pass
+        list_column_spec = []
+        for i in self.specification_combo_box_list:
+            if "Row" in i.currentText():
+                list_column_spec.append('')
+            else:
+                list_column_spec.append(i.currentText())
 
 
+
+# ---------------------------------------FILTER_WINDOW-------------------------------------------#
 class FilterPopup(QWidget):
     def __init__(self, data_set, create_table, table_widget):
         QWidget.__init__(self)
@@ -138,7 +139,7 @@ class FilterPopup(QWidget):
         self.apply_button.resize(300, 40)
         self.apply_button.clicked.connect(lambda: self.apply_changes())
 
-        self.layout.addWidget(self.apply_button, int(len(self.data_set.data.keys())/4)+2, 3)
+        self.layout.addWidget(self.apply_button, int(len(self.data_set.data.keys()) / 4) + 2, 3)
         self.setLayout(self.layout)
 
     def apply_changes(self):
@@ -163,15 +164,60 @@ class FilterPopup(QWidget):
 
         self.create_table()
         self.table_widget.update()
-
         self.destroy()
 
 
+# --------------------------------------SUBSTITUTION_WINDOW----------------------------------------#
 class SubstituteWindow(QWidget):
-    def __init__(self):
+    def __init__(self, data_set, create_table, table_widget):
         QWidget.__init__(self)
+        self.data_set = data_set
+        self.create_table = create_table
+        self.table_widget = table_widget
+        self.setWindowTitle("Substitution")
+        label = QLabel("Please enter a value that you want to be changed and a value that will replace it: ", self)
+        label.setFont(QFont("Arial", 12))
+        label.move(80, 20)
+        label.resize(500, 60)
+        label.setWordWrap(True)
+
+        self.replacee = QLineEdit(self)
+        self.replacee.move(100, 80)
+        self.replacee.resize(400, 40)
+
+        self.replacer = QLineEdit(self)
+        self.replacer.move(100, 120)
+        self.replacer.resize(400, 40)
+
+        replacee_label = QLabel("Old Value:", self)
+        replacee_label.move(20, 86)
+        replacer_label = QLabel("New Value:", self)
+        replacer_label.move(20, 126)
+
+        self.selection_box = QComboBox(parent=self)
+        self.selection_box.addItems(["int", "float", "string"])
+        self.selection_box.move(100, 160)
+        self.selection_box.resize(200, 40)
+
+        apply_button = QPushButton("Apply", self)
+        apply_button.resize(300, 40)
+        apply_button.move(280, 250)
+        apply_button.clicked.connect(lambda: self.apply_changes())
+
+    def apply_changes(self):
+        if self.selection_box.currentText() == "int":
+            self.data_set.data = self.data_set.data.replace(int(self.replacee.text()), int(self.replacer.text()))
+        elif self.selection_box.currentText() == "float":
+            self.data_set.data = self.data_set.data.replace(float(self.replacee.text()), float(self.replacer.text()))
+        elif self.selection_box.currentText() == "string":
+            self.data_set.data = self.data_set.data.replace(self.replacee.text().strip(), self.replacer.text().strip())
+
+        self.create_table()
+        self.table_widget.update()
+        self.destroy()
 
 
+# -----------------------------------------------HELPING_CLASSES--------------------------------------------#
 class RowWidget(QWidget):
     def __init__(self, row):
         QWidget.__init__(self)

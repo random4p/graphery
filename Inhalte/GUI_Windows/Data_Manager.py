@@ -29,8 +29,8 @@ class DataManager:
                 print("Your file type is not supported!")
 
             try:
-                #self.engine = create_engine(f"sqlite:///Database/{self.name}.db", echo=True)
-                self.engine = create_engine(f"sqlite:///Inhalte/GUI_Windows/Database/{self.name}.db", echo=True)
+                self.engine = create_engine(f"sqlite:///Database/{self.name}.db", echo=True)
+                # self.engine = create_engine(f"sqlite:///Inhalte/GUI_Windows/Database/{self.name}.db", echo=True)
                 self.data.to_sql(self.name, self.engine)
                 print("Data was loaded into the database.")
             except FileExistsError:
@@ -39,8 +39,8 @@ class DataManager:
         # open mode -- data is loaded from the sql database into dataframe
         elif mode == "open":
             try:
-                #self.engine = create_engine(f"sqlite:///Database/{self.name}.db", echo=True)
-                self.engine = create_engine(f"sqlite:///Inhalte/GUI_Windows/Database/{self.name}.db", echo=True)
+                self.engine = create_engine(f"sqlite:///Database/{self.name}.db", echo=True)
+                # self.engine = create_engine(f"sqlite:///Inhalte/GUI_Windows/Database/{self.name}.db", echo=True)
                 self.data = read_sql_table(self.name, self.engine)
             except FileNotFoundError:
                 print("File could not be found.")
@@ -51,6 +51,9 @@ class DataManager:
 
     def get_DataFrame_cl(self):
         return list(self.data.columns.values)
+
+    def make_copy(self):
+        return self.data.copy(deep=True)
 
 
 

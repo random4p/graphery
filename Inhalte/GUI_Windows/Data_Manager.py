@@ -48,6 +48,8 @@ class DataManager:
     def keys(self):
         return self.data.keys()
 
+    def get_DataFrame_cl(self):
+        return list(self.data.columns.values)
 
 
 

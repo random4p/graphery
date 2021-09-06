@@ -6,6 +6,7 @@ import random
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
+from Data_Manager import DataManager
 
 class ConfigurePlotTab(QWidget):
 
@@ -42,8 +43,8 @@ class ConfigurePlotTab(QWidget):
         
         #get all column labels in a list
         self.data = data_set
-        self.drop_list_items = ["{sf}".format(sf = self.data.data[i].values) for i in self.data.data.keys()]
-        #self.drop_list_items = []
+        #.drop_list_items = ["{sf}".format(sf = self.data.data[i].values) for i in self.data.data.keys()]
+        self.drop_list_items = self.data.get_DataFrame_cl()
         self.drop_list_items.insert(0, "N/A")
         
 
@@ -112,38 +113,31 @@ class ConfigurePlotTab(QWidget):
         zfilter2_input.setMaximumWidth(70)
         dim_layout_grid.addWidget(zfilter2_input, 9, 2)
 
-        plot_label = QLabel("Label of the Plot")
-        dim_layout_grid.addWidget(plot_label, 10, 0)
-        plot_label_input = QLineEdit()
-        plot_label_input.setMaximumWidth(70)
-        dim_layout_grid.addWidget(plot_label_input, 10, 2)
+        # plot_label = QLabel("Label of the Plot")
+        # dim_layout_grid.addWidget(plot_label, 10, 0)
+        # plot_label_input = QLineEdit()
+        # plot_label_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_label_input, 10, 2)
 
-        plot_xlabel = QLabel("Label of the X-Axes")
-        dim_layout_grid.addWidget(plot_xlabel, 11, 0)
-        plot_xlabel_input = QLineEdit()
-        plot_xlabel_input.setMaximumWidth(70)
-        dim_layout_grid.addWidget(plot_xlabel_input, 11, 2)
+        # plot_xlabel = QLabel("Label of the X-Axes")
+        # dim_layout_grid.addWidget(plot_xlabel, 11, 0)
+        # plot_xlabel_input = QLineEdit()
+        # plot_xlabel_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_xlabel_input, 11, 2)
 
-        plot_ylabel = QLabel("Label of the Y-Axes")
-        dim_layout_grid.addWidget(plot_ylabel, 12, 0)
-        plot_ylabel_input = QLineEdit()
-        plot_ylabel_input.setMaximumWidth(70)
-        dim_layout_grid.addWidget(plot_ylabel_input, 12, 2)
+        # plot_ylabel = QLabel("Label of the Y-Axes")
+        # dim_layout_grid.addWidget(plot_ylabel, 12, 0)
+        # plot_ylabel_input = QLineEdit()
+        # plot_ylabel_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_ylabel_input, 12, 2)
 
-        plot_zlabel = QLabel("Label of the Z-Axes")
-        dim_layout_grid.addWidget(plot_zlabel, 13, 0)
-        plot_zlabel_input = QLineEdit()
-        plot_zlabel_input.setMaximumWidth(70)
-        dim_layout_grid.addWidget(plot_zlabel_input, 13, 2)
-
-
-        add_button = QPushButton("add Dashboard")
-        add_button.setMaximumWidth(100)
-        dim_layout_grid.addWidget(add_button, 14, 1)
-
-        
-
-        
+        # plot_zlabel = QLabel("Label of the Z-Axes")
+        # dim_layout_grid.addWidget(plot_zlabel, 13, 0)
+        # plot_zlabel_input = QLineEdit()
+        # plot_zlabel_input.setMaximumWidth(70)
+        # dim_layout_grid.addWidget(plot_zlabel_input, 13, 2)
+ 
+ 
         ######plot layout
         plot_layout_grid = QGridLayout()
         plot_layout_inside_grid = QVBoxLayout()
@@ -151,7 +145,7 @@ class ConfigurePlotTab(QWidget):
         plot_layout_inside_grid.figure = plt.figure()
         plot_layout_inside_grid.canvas = FigureCanvas(plot_layout_inside_grid.figure)
         plot_layout_inside_grid.toolbar = NavigationToolbar(plot_layout_inside_grid.canvas, parent)
-        confirm_button.clicked.connect(lambda : plot_now)
+        
 
         add_dashboard_button = QPushButton('Add Dashboard')
         #add_dashboard_button.clicked.connect(add_dash)
@@ -179,7 +173,7 @@ class ConfigurePlotTab(QWidget):
 
             # refresh canvas
             plot_layout_inside_grid.canvas.draw()
-        
+        confirm_button.clicked.connect(plot_now)
         plot_layout_inside_grid.addWidget(plot_layout_inside_grid.toolbar)
         plot_layout_inside_grid.addWidget(plot_layout_inside_grid.canvas)
         plot_layout_inside_grid.addWidget(add_dashboard_button)

@@ -7,6 +7,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
 from Data_Manager import DataManager
+from scipy.stats import kde
 
 class ConfigurePlotTab(QWidget):
 
@@ -172,12 +173,33 @@ class ConfigurePlotTab(QWidget):
             if self.select_plot_value.currentText() == "Line Plot":
                 ax.plot(test_list,data)
 
+            if self.select_plot_value.currentText() == "Bar Graph":
+                ax.bar(test_list, data)
+
+            if self.select_plot_value.currentText() == "Histogram":
+                ax.hist(data)
+
             if self.select_plot_value.currentText() == "Scatter":
                 ax.scatter(test_list,data)
+
+            if self.select_plot_value.currentText() == "Area Plot":
+                ax.fill_between(test_list,data)
 
             if self.select_plot_value.currentText() == "Pie Chart":
                 ax.pie(data, autopct='%1.1f%%', labels = data, startangle=90)
                 ax.axis('equal')
+            
+            if self.select_plot_value.currentText() == "Box Plot":
+                ax.boxplot(data)
+
+            if self.select_plot_value.currentText() == "Hexagonal bin Plot":
+                ax.hexbin(test_list, data)
+
+            if self.select_plot_value.currentText() == "Density Plot":
+                prob_density = kde.gaussian_kde(data)
+                prob_density.covariance_factor = lambda : .25
+                prob_density._compute_covariance()
+                ax.plot(test_list, prob_density(data))
 
             # refresh canvas
             plot_layout_inside_grid.canvas.draw()

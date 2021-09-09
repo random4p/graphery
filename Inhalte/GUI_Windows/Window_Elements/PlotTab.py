@@ -81,12 +81,7 @@ class ConfigurePlotTab(QWidget):
                                 "Box Plot", 
                                 "Hexagonal bin Plot", 
                                 "Density Plot", 
-                                "Andrews curves", 
-                                "Parallel Coordinates", 
-                                "Lag plot", 
-                                "Autocorrelation plot", 
-                                "Bootstrap plot", 
-                                "RadViz"
+                                "Autocorrelation Plot"
                             ]
         self.select_plot_value.addItems(self.list_of_plots)
         dim_layout_grid.addWidget(select_plot, 1, 2)
@@ -152,7 +147,7 @@ class ConfigurePlotTab(QWidget):
         plot_layout_inside_grid.toolbar = NavigationToolbar(plot_layout_inside_grid.canvas, parent)
         
 
-        add_dashboard_button = QPushButton('Add Dashboard')
+        add_dashboard_button = QPushButton('Add to Dashboard')
         #add_dashboard_button.clicked.connect(add_dash)
         
         def plot_now():
@@ -200,6 +195,10 @@ class ConfigurePlotTab(QWidget):
                 prob_density.covariance_factor = lambda : .25
                 prob_density._compute_covariance()
                 ax.plot(test_list, prob_density(data))
+            
+            if self.select_plot_value.currentText() == "Autocorrelation Plot":
+                ax.acorr(data)
+                ax.grid(True)
 
             # refresh canvas
             plot_layout_inside_grid.canvas.draw()

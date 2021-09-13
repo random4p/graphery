@@ -108,12 +108,16 @@ class DataPrep:
         self.substitute_window.show()
 
     def confirm_changes(self):
-        list_column_spec = []
-        for i in self.specification_combo_box_list:
-            if "Row" in i.currentText():
-                list_column_spec.append('')
-            else:
-                list_column_spec.append(i.currentText())
+        # list_column_spec = []
+        # for i in self.specification_combo_box_list:
+        #     if "Row" in i.currentText():
+        #         return
+        #     else:
+        #         list_column_spec.append(i.currentText())
+
+        self.ask_name = NameInputWindow(self.data_set)
+        self.ask_name.setGeometry(700, 700, 600, 250)
+        self.ask_name.show()
 
 
 # ---------------------------------------FILTER_WINDOW-------------------------------------------#
@@ -241,3 +245,47 @@ class RowWidget(QWidget):
         self.input_box = QLineEdit(self)
         self.input_box.move(20, 230)
         self.input_box.resize(400, 40)
+
+
+class NameInputWindow(QWidget):
+    def __init__(self, data_set):
+        QWidget.__init__(self)
+
+        self.name = data_set.name
+        self.data_set = data_set
+
+        new = QPushButton("Create new table", self)
+        new.move(50, 70)
+        new.resize(250, 40)
+        new.clicked.connect(lambda: self.enable())
+
+        change = QPushButton("Change existing table", self)
+        change.move(300, 70)
+        change.resize(250, 40)
+        change.clicked.connect(lambda: self.confirm())
+
+        self.name_input = QLineEdit(self)
+        self.name_input.move(50, 120)
+        self.name_input.resize(250, 40)
+        self.name_input.setDisabled(True)
+
+        self.confirm_input = QPushButton("Save", self)
+        self.confirm_input.move(300, 120)
+        self.confirm_input.resize(100, 40)
+        self.confirm_input.setDisabled(True)
+        self.confirm_input.clicked.connect(lambda: self.save())
+
+    def enable(self):
+        self.name_input.setEnabled(True)
+        self.confirm_input.setEnabled(True)
+
+    def confirm(self):
+        self.data_set.create_new_sql_table(self.name)
+        self.destroy()
+
+    def save(self):
+        self.name = self.name_input.text()
+        self.data_set.create_new_sql_table(self.name)
+        self.destroy()
+
+

@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="83ebffa2-660c-4d4f-b196-2bb51b941219" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Data_Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Data_Manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Database/aplple.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Database/apple.db" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Database/apple.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Start.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/GUI_Start.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DataPrep.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalte/GUI_Windows/Window_Elements/DataPrep.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

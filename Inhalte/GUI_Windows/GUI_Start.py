@@ -20,7 +20,8 @@ LIGHT_GREEN = "#A7C4BC"
 LIGHT_LIGHT_GREEN = "#DFEEEA"
 
 existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
-#existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join("Inhalte/GUI_Windows/Database", f))]
+# existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join(
+# "Inhalte/GUI_Windows/Database", f))]
 
 
 # ----------------------------Import_Function----------------------------------#

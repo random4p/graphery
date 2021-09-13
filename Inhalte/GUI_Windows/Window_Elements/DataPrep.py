@@ -116,7 +116,6 @@ class DataPrep:
                 list_column_spec.append(i.currentText())
 
 
-
 # ---------------------------------------FILTER_WINDOW-------------------------------------------#
 class FilterPopup(QWidget):
     def __init__(self, data_set, create_table, table_widget):

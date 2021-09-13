@@ -20,7 +20,7 @@ LIGHT_GREEN = "#A7C4BC"
 LIGHT_LIGHT_GREEN = "#DFEEEA"
 
 existing_projects = [f.split(".")[0] for f in listdir("Database") if isfile(join("Database", f))]
-# existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join("Inhalte/GUI_Windows/Database", f))]
+#existing_projects = [f.split(".")[0] for f in listdir("Inhalte/GUI_Windows/Database") if isfile(join("Inhalte/GUI_Windows/Database", f))]
 
 
 # ----------------------------Import_Function----------------------------------#
@@ -74,7 +74,7 @@ class StartWindow(Tk):
 
         # canvas
         self.logo = PhotoImage(file="Images/graphery_logo.png")
-        # self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
+        #self.logo = PhotoImage(file="Inhalte/GUI_Windows/Images/graphery_logo.png")
         canvas = Canvas(width=650, height=200, bg=DARK_GREEN, borderwidth=0)
         canvas.create_image(150, 100, image=self.logo, state="normal")
         canvas.update()
